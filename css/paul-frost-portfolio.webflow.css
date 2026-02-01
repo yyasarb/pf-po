@@ -284,6 +284,11 @@ a {
 
 .socialink {
   color: var(--ycream);
+  margin-right: 12px;
+}
+
+.socialink:last-child {
+  margin-right: 0;
 }
 
 .socialink.lastone {
