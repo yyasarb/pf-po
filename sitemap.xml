@@ -13,11 +13,6 @@
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://roamer.se/index</loc>
-  <lastmod>2025-04-18T10:51:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
   <loc>https://roamer.se/works</loc>
   <lastmod>2025-04-18T11:34:10+00:00</lastmod>
   <priority>0.80</priority>
@@ -88,5 +83,15 @@
   <priority>0.64</priority>
 </url>
 
+<url>
+  <loc>https://roamer.se/works/orthomosaic-map</loc>
+  <lastmod>2025-05-19T20:50:54+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://roamer.se/works/dell-technologies-and-nordic-glaciers-documentary-dp</loc>
+  <lastmod>2025-05-19T20:50:54+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
 
 </urlset>
