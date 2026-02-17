@@ -1657,16 +1657,27 @@ p {
     --container-padding: 20px;
   }
 
-  /* --- Nav: center logo, stack greeting below --- */
+  /* --- Nav: greeting + tagline scroll away, logo stays fixed --- */
   .site-nav {
+    position: relative;
     flex-direction: column;
     align-items: center;
     padding: 24px var(--container-padding) 20px;
     gap: 0;
   }
 
+  .site-nav.is-hidden {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
   .hero__logo {
-    position: static;
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
     margin-bottom: 20px;
   }
 
@@ -1676,6 +1687,7 @@ p {
 
   .hero__top-center {
     align-items: center;
+    margin-top: 36px;
   }
 
   .hero__greeting {
@@ -1702,7 +1714,7 @@ p {
   }
 
   .hero__main {
-    padding-top: 38vh;
+    padding-top: 30vh;
     padding-left: var(--container-padding);
     padding-right: var(--container-padding);
   }
