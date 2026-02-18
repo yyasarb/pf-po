@@ -114,8 +114,32 @@
     '[data-config].editor-hoverable{outline:2px dashed transparent;outline-offset:2px;cursor:pointer;transition:outline-color .15s}' +
     '[data-config].editor-hoverable:hover{outline-color:#2563eb}' +
     '[data-config][contenteditable="true"]{outline:2px solid #2563eb!important;outline-offset:2px;background:rgba(37,99,235,0.05);min-height:1em}' +
-    '[data-section].editor-section-off{opacity:0.3;pointer-events:none}';
+    '[data-section].editor-section-off{opacity:0.3;pointer-events:none}' +
+    /* Edit mode: force video player visible at full scale */
+    'body.editor-active .video-section__player{transform:none!important;border-radius:16px!important;opacity:1!important}' +
+    'body.editor-active .video-section__heading{opacity:1!important;transform:none!important}' +
+    'body.editor-active .video-section__sub{opacity:1!important;transform:none!important}' +
+    'body.editor-active .video-section__text{opacity:1!important;transform:none!important}' +
+    'body.editor-active .video-outro{opacity:1!important;transform:none!important;position:relative!important;top:auto!important}' +
+    'body.editor-active .video-play-overlay{display:none!important}' +
+    /* Edit mode: force skills items fully visible */
+    'body.editor-active .skills-item__num{opacity:1!important}' +
+    'body.editor-active .skills-item__desc{opacity:1!important}' +
+    'body.editor-active .skills-box{margin:0!important;border-radius:0!important}' +
+    /* Edit mode: force char reveals visible */
+    'body.editor-active .char{opacity:1!important}';
   document.head.appendChild(style);
+
+  // Add editor-active class to body
+  document.body.classList.add('editor-active');
+
+  // Kill GSAP pinning and scroll animations so sections flow naturally in edit mode
+  if (typeof ScrollTrigger !== 'undefined') {
+    ScrollTrigger.getAll().forEach(function (st) {
+      if (st.pin) st.kill(true);
+    });
+    ScrollTrigger.refresh();
+  }
 
   // --- Edit mode banner ---
   var banner = document.createElement('div');
