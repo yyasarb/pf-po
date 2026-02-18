@@ -385,6 +385,7 @@
   var progressFill = document.getElementById('videoProgressFill');
   var iframe       = playerEl ? playerEl.querySelector('iframe') : null;
   if (!section || !playerEl) return;
+  if (section.style.display === 'none' || section.offsetParent === null) return;
   var isMobile = window.matchMedia('(max-width: 767px)').matches;
   var isSmallMobile = window.matchMedia('(max-width: 390px)').matches;
 
