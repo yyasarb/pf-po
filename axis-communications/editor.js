@@ -86,8 +86,16 @@
     '#editor-panel{position:fixed;top:40px;right:16px;width:300px;max-height:calc(100vh - 56px);overflow-y:auto;z-index:9999;background:#1e1e2e;color:#cdd6f4;border-radius:12px;padding:20px;font:13px/1.5 system-ui,sans-serif;box-shadow:0 8px 32px rgba(0,0,0,0.4)}' +
     '#editor-panel h3{margin:0 0 12px;font-size:14px;color:#89b4fa;border-bottom:1px solid #313244;padding-bottom:8px}' +
     '#editor-panel label{display:block;margin:8px 0 4px;font-size:12px;color:#a6adc8}' +
-    '#editor-panel input[type="text"]{width:100%;box-sizing:border-box;padding:6px 8px;border:1px solid #45475a;border-radius:6px;background:#313244;color:#cdd6f4;font-size:13px;outline:none}' +
-    '#editor-panel input[type="text"]:focus{border-color:#89b4fa}' +
+    '#editor-panel input[type="text"],#editor-panel textarea{width:100%;box-sizing:border-box;padding:6px 8px;border:1px solid #45475a;border-radius:6px;background:#313244;color:#cdd6f4;font-size:13px;outline:none;font-family:system-ui,sans-serif}' +
+    '#editor-panel textarea{resize:vertical;min-height:48px;line-height:1.4}' +
+    '#editor-panel input[type="text"]:focus,#editor-panel textarea:focus{border-color:#89b4fa}' +
+    '.editor-section-heading{font-size:12px;color:#89b4fa;margin:12px 0 6px;padding-top:8px;border-top:1px solid #313244;font-weight:600}' +
+    '.editor-skill-item{background:#313244;border-radius:6px;padding:8px;margin-bottom:6px}' +
+    '.editor-skill-item label{margin:2px 0!important}' +
+    '.editor-skill-row{display:flex;gap:6px}' +
+    '.editor-skill-row input{flex:1}' +
+    '.editor-btn-add-skill{background:#313244;color:#89b4fa;font-size:12px;padding:6px!important;margin-top:4px!important}' +
+    '.editor-btn-remove-skill{background:none;border:none!important;color:#f38ba8;font-size:16px;cursor:pointer;padding:0 4px!important;margin:0!important;width:auto!important;line-height:1}' +
     '.editor-toggle{display:flex;align-items:center;justify-content:space-between;padding:4px 0}' +
     '.editor-toggle span{font-size:12px;color:#a6adc8}' +
     '.editor-switch{position:relative;width:36px;height:20px;cursor:pointer}' +
@@ -115,6 +123,71 @@
   banner.textContent = 'EDIT MODE';
   document.body.appendChild(banner);
 
+  // --- Skill item HTML builder ---
+  function buildSkillItemHTML(index, skill) {
+    return '<div class="editor-skill-item" data-skill-index="' + index + '">' +
+      '<div class="editor-skill-row">' +
+      '<input type="text" data-skill-field="num" value="' + escAttr(skill.num) + '" placeholder="001" style="max-width:50px">' +
+      '<input type="text" data-skill-field="word" value="' + escAttr(skill.word) + '" placeholder="Skill name">' +
+      '<button class="editor-btn-remove-skill" data-skill-remove="' + index + '">&times;</button>' +
+      '</div>' +
+      '<textarea data-skill-field="desc" rows="2" style="margin-top:4px">' + escAttr(skill.desc) + '</textarea>' +
+      '</div>';
+  }
+
+  // --- Rebuild skills DOM from working config ---
+  function rebuildSkillsDOM() {
+    var skillsList = document.querySelector('[data-config-skills]');
+    if (!skillsList) return;
+    skillsList.innerHTML = '';
+    workingConfig.skills.forEach(function (skill) {
+      var item = document.createElement('div');
+      item.className = 'skills-item';
+      item.innerHTML =
+        '<span class="skills-item__num">(' + skill.num + ')</span>' +
+        '<span class="skills-item__word">' + skill.word + '</span>' +
+        '<span class="skills-item__desc">' + skill.desc + '</span>';
+      skillsList.appendChild(item);
+    });
+  }
+
+  // --- Rebuild skills editor list ---
+  function rebuildSkillsEditor() {
+    var container = document.getElementById('ed-skills-list');
+    if (!container) return;
+    container.innerHTML = '';
+    workingConfig.skills.forEach(function (skill, i) {
+      container.innerHTML += buildSkillItemHTML(i, skill);
+    });
+    bindSkillInputs();
+  }
+
+  // --- Bind skill input events ---
+  function bindSkillInputs() {
+    var items = document.querySelectorAll('#ed-skills-list .editor-skill-item');
+    items.forEach(function (item) {
+      var idx = parseInt(item.getAttribute('data-skill-index'), 10);
+      var fields = item.querySelectorAll('[data-skill-field]');
+      fields.forEach(function (field) {
+        field.addEventListener('input', function () {
+          var key = field.getAttribute('data-skill-field');
+          workingConfig.skills[idx][key] = field.value;
+          rebuildSkillsDOM();
+          persist();
+        });
+      });
+      var removeBtn = item.querySelector('[data-skill-remove]');
+      if (removeBtn) {
+        removeBtn.addEventListener('click', function () {
+          workingConfig.skills.splice(idx, 1);
+          rebuildSkillsDOM();
+          rebuildSkillsEditor();
+          persist();
+        });
+      }
+    });
+  }
+
   // --- Build sidebar panel ---
   var panel = document.createElement('div');
   panel.id = 'editor-panel';
@@ -139,8 +212,30 @@
 
   // Video
   html += '<div class="editor-section">';
+  html += '<div class="editor-section-heading">Video</div>';
   html += '<label>Vimeo URL or ID</label>';
   html += '<input type="text" id="ed-video" value="' + escAttr(workingConfig.video.vimeoId) + '" placeholder="e.g. 1140568272 or full URL">';
+  html += '<label>Heading</label>';
+  html += '<textarea id="ed-video-heading" rows="2">' + escAttr(workingConfig.text['video-heading']) + '</textarea>';
+  html += '<label>Subtitle</label>';
+  html += '<input type="text" id="ed-video-sub" value="' + escAttr(workingConfig.text['video-sub']) + '">';
+  html += '<label>Text after video</label>';
+  html += '<textarea id="ed-video-text1" rows="2">' + escAttr(workingConfig.text['video-text1']) + '</textarea>';
+  html += '<label>Outro</label>';
+  html += '<input type="text" id="ed-video-outro" value="' + escAttr(workingConfig.text['video-outro']) + '">';
+  html += '</div>';
+
+  // Skills
+  html += '<div class="editor-section" id="ed-skills-section">';
+  html += '<div class="editor-section-heading">Skills</div>';
+  html += '<div id="ed-skills-list">';
+  workingConfig.skills.forEach(function (skill, i) {
+    html += buildSkillItemHTML(i, skill);
+  });
+  html += '</div>';
+  html += '<button class="editor-btn-add-skill" id="ed-add-skill">+ Add Skill</button>';
+  html += '<label>Skills outro</label>';
+  html += '<textarea id="ed-skills-outro" rows="2">' + escAttr(workingConfig.text['skills-outro']) + '</textarea>';
   html += '</div>';
 
   // Section toggles
@@ -241,6 +336,28 @@
     persist();
   });
 
+  // Video text fields
+  bindTextarea('ed-video-heading', 'video-heading');
+  bindTextarea('ed-video-sub', 'video-sub');
+  bindTextarea('ed-video-text1', 'video-text1');
+  bindTextarea('ed-video-outro', 'video-outro');
+
+  // Skills outro
+  bindTextarea('ed-skills-outro', 'skills-outro');
+
+  // Bind skill inputs and add button
+  bindSkillInputs();
+  var addSkillBtn = document.getElementById('ed-add-skill');
+  if (addSkillBtn) {
+    addSkillBtn.addEventListener('click', function () {
+      var nextNum = String(workingConfig.skills.length + 1).padStart(3, '0');
+      workingConfig.skills.push({ num: nextNum, word: 'New Skill', desc: 'Description...' });
+      rebuildSkillsDOM();
+      rebuildSkillsEditor();
+      persist();
+    });
+  }
+
   // --- Section toggles ---
   var toggles = panel.querySelectorAll('[data-section-toggle]');
   toggles.forEach(function (toggle) {
@@ -292,5 +409,16 @@
     var el = document.getElementById(id);
     if (!el) return;
     el.addEventListener('input', function () { handler(el.value); });
+  }
+
+  function bindTextarea(id, configKey) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', function () {
+      workingConfig.text[configKey] = el.value;
+      var target = document.querySelector('[data-config="' + configKey + '"]');
+      if (target) target.innerHTML = el.value;
+      persist();
+    });
   }
 })();
