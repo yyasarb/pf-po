@@ -23,6 +23,15 @@
 
   <!-- Favicon (reuse site favicon) -->
   <link rel="shortcut icon" href="images/favicon.jpg" type="image/x-icon">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0MMM3S6R1P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-0MMM3S6R1P');
+  </script>
 </head>
 <body>
   <div class="grain-overlay"></div>
@@ -31,39 +40,39 @@
   <a href="#" class="hero__logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
     <img src="images/paulfrost-logo.svg" alt="Paul Frost">
   </a>
-  <nav class="site-nav" id="siteNav">
+  <nav class="site-nav" id="siteNav" data-section="hero">
     <div class="hero__top-center">
       <div class="hero__greeting hero-fade-simple" style="--fade-delay: 0s">
-        <span>hello</span>
-        <img src="images/axis-logo.png" alt="Axis Communications">
-        <span>team!</span>
+        <span data-config="greeting-before">hello</span>
+        <img src="images/axis-logo.png" alt="Axis Communications" data-config-logo>
+        <span data-config="greeting-after">team!</span>
       </div>
     </div>
   </nav>
 
-  <p class="hero__tagline hero-fade-simple" style="--fade-delay: 0.1s">I made you a website because PDFs never did justice to anyone.</p>
+  <p class="hero__tagline hero-fade-simple" style="--fade-delay: 0.1s" data-config="hero-tagline">I made you a website because PDFs never did justice to anyone.</p>
 
   <!-- ==================== HERO ==================== -->
-  <section class="hero section--cream">
+  <section class="hero section--cream" data-section="hero">
 
     <div class="hero__main">
-      <h1 class="hero__heading hero-fade" style="--fade-delay: 0.2s">A <em class="hero__heading-italic">storyteller</em> for the company that invented network video.</h1>
-      <p class="hero__subtitle hero-fade" style="--fade-delay: 0.3s">This is my unusual cover letter and I'm your new marketing coordinator.<br><br><span class="hero__subtitle-emphasis">And here is why;</span></p>
+      <h1 class="hero__heading hero-fade" style="--fade-delay: 0.2s" data-config="hero-heading">A <em class="hero__heading-italic">storyteller</em> for the company that invented network video.</h1>
+      <p class="hero__subtitle hero-fade" style="--fade-delay: 0.3s" data-config="hero-subtitle">This is my unusual cover letter and I'm your new marketing coordinator.<br><br><span class="hero__subtitle-emphasis">And here is why;</span></p>
     </div>
   </section>
 
   <!-- ==================== WHY AXIS ==================== -->
-  <section id="why-axis" class="section section--cream section-about">
+  <section id="why-axis" class="section section--cream section-about" data-section="whyAxis">
     <div class="container">
-      <p class="about-intro reveal">Before anything else, let me prove I actually understand what you do.</p>
+      <p class="about-intro reveal" data-config="about-intro">Before anything else, let me prove I actually understand what you do.</p>
 
       <div class="text-reveal" id="textReveal">
         <div class="about-columns">
-          <p class="about-column">You do not just sell cameras. You sell trust, safety, and smarter worlds. Your customer stories are the proof of that promise. They are your most powerful sales asset.</p>
-          <p class="about-column">But great stories do not scale themselves. Someone needs to build the frameworks, coordinate the global teams, and make sure a brilliant case study in Tokyo gets the same love as one in Texas.</p>
+          <p class="about-column" data-config="about-col-1">You do not just sell cameras. You sell trust, safety, and smarter worlds. Your customer stories are the proof of that promise. They are your most powerful sales asset.</p>
+          <p class="about-column" data-config="about-col-2">But great stories do not scale themselves. Someone needs to build the frameworks, coordinate the global teams, and make sure a brilliant case study in Tokyo gets the same love as one in Texas.</p>
         </div>
 
-        <p class="about-outro">That someone is me. And I brought receipts.</p>
+        <p class="about-outro" data-config="about-outro">That someone is me. And I brought receipts.</p>
         <div class="about-line" id="aboutLine"></div>
         <div class="about-vline" id="aboutVLine"></div>
       </div>
@@ -71,8 +80,8 @@
   </section>
 
   <!-- ==================== CLIENT LOGOS ==================== -->
-  <section id="clients" class="clients-section section section--cream">
-    <p class="clients-intro reveal">Now let's talk about me. But briefly, I promise.</p>
+  <section id="clients" class="clients-section section section--cream" data-section="clients">
+    <p class="clients-intro reveal" data-config="clients-intro">Now let's talk about me. But briefly, I promise.</p>
 
     <div class="clients-grid">
       <!-- Left marquee — scrolls up -->
@@ -101,7 +110,7 @@
 
       <!-- Center text -->
       <div class="clients-center">
-        <h2 class="clients-heading reveal">More than a decade. Clients from five continents. And some familiar names along the way.</h2>
+        <h2 class="clients-heading reveal" data-config="clients-heading">More than a decade. Clients from five continents. And some familiar names along the way.</h2>
       </div>
 
       <!-- Right marquee — scrolls down -->
@@ -129,16 +138,16 @@
       </div>
     </div>
 
-    <p class="clients-outro" id="clientsOutro">Apart from a quote, they all asked for the same thing:</p>
+    <p class="clients-outro" id="clientsOutro" data-config="clients-outro">Apart from a quote, they all asked for the same thing:</p>
 
   </section>
 
   <!-- ==================== VIDEO SHOWCASE ==================== -->
-  <section class="section section--cream video-section" id="videoSection">
+  <section class="section section--cream video-section" id="videoSection" data-section="video">
     <div class="video-section__content">
       <div class="video-section__intro">
-        <h2 class="video-section__heading">...turn something complex into a <span class="heading-italic">story</span><br>people understand and care about.</h2>
-        <p class="video-section__sub">Here is what that looks like in action:</p>
+        <h2 class="video-section__heading" data-config="video-heading">...turn something complex into a <span class="heading-italic">story</span><br>people understand and care about.</h2>
+        <p class="video-section__sub" data-config="video-sub">Here is what that looks like in action:</p>
       </div>
 
       <div class="video-section__player" id="videoPlayer">
@@ -174,16 +183,16 @@
       </div>
 
       <div class="video-section__footer">
-        <h3 class="video-section__text" id="videoText1">Now imagine this, but for Axis. Every customer story. Every channel. Globally.</h3>
+        <h3 class="video-section__text" id="videoText1" data-config="video-text1">Now imagine this, but for Axis. Every customer story. Every channel. Globally.</h3>
       </div>
     </div>
-    <p class="video-outro" id="videoOutro">But did you also know that I'm really good with?</p>
+    <p class="video-outro" id="videoOutro" data-config="video-outro">But did you also know that I'm really good with?</p>
   </section>
 
   <!-- ==================== SKILLS ==================== -->
-  <section class="skills-section section--dark" id="skillsSection">
+  <section class="skills-section section--dark" id="skillsSection" data-section="skills">
     <div class="skills-box">
-      <div class="skills-list">
+      <div class="skills-list" data-config-skills>
         <div class="skills-item">
           <span class="skills-item__num">(001)</span>
           <span class="skills-item__word">English</span>
@@ -232,83 +241,83 @@
       </div>
 
       <div class="skills-outro">
-        <p class="skills-outro__text">"Cool skills Paul, but what would you actually do here?" Great question. Keep scrolling.</p>
+        <p class="skills-outro__text" data-config="skills-outro">"Cool skills Paul, but what would you actually do here?" Great question. Keep scrolling.</p>
       </div>
     </div>
   </section>
 
   <!-- ==================== FRAMEWORK ==================== -->
-  <section class="proof-section section--cream" id="proofSection">
+  <section class="proof-section section--cream" id="proofSection" data-section="proof">
     <div class="proof-box" id="proofBox">
       <div class="proof-content">
         <div class="proof-left">
-          <p>You need someone to build frameworks, support global teams, and package stories for every channel. That is not just marketing. That is a system. And I love systems.</p>
+          <p data-config="proof-left">You need someone to build frameworks, support global teams, and package stories for every channel. That is not just marketing. That is a system. And I love systems.</p>
         </div>
-        <div class="proof-right">
+        <div class="proof-right" data-config-proof-steps>
           <div class="proof-step">
             <h3 class="proof-step__title">
               <span class="proof-step__title-mask">
                 <span class="proof-step__title-slide">
-                  <span class="proof-step__title-text">01 / Find the Pain</span>
-                  <span class="proof-step__title-text">01 / Find the Pain</span>
+                  <span class="proof-step__title-text" data-config="proof-step-1-title">01 / Find the Pain</span>
+                  <span class="proof-step__title-text" data-config-title-dup="proof-step-1-title">01 / Find the Pain</span>
                 </span>
               </span>
             </h3>
             <div class="proof-step__line"></div>
-            <p class="proof-step__desc">Nobody reads a story that starts with "Axis installed 47 cameras." They read a story that starts with "The warehouse was losing $2M a year to theft."</p>
+            <p class="proof-step__desc" data-config="proof-step-1-desc">Nobody reads a story that starts with "Axis installed 47 cameras." They read a story that starts with "The warehouse was losing $2M a year to theft."</p>
           </div>
           <div class="proof-step">
             <h3 class="proof-step__title">
               <span class="proof-step__title-mask">
                 <span class="proof-step__title-slide">
-                  <span class="proof-step__title-text">02 / Show the Shift</span>
-                  <span class="proof-step__title-text">02 / Show the Shift</span>
+                  <span class="proof-step__title-text" data-config="proof-step-2-title">02 / Show the Shift</span>
+                  <span class="proof-step__title-text" data-config-title-dup="proof-step-2-title">02 / Show the Shift</span>
                 </span>
               </span>
             </h3>
             <div class="proof-step__line"></div>
-            <p class="proof-step__desc">What changed after Axis showed up? Not the specs. The outcome. The moment a customer stopped worrying.</p>
+            <p class="proof-step__desc" data-config="proof-step-2-desc">What changed after Axis showed up? Not the specs. The outcome. The moment a customer stopped worrying.</p>
           </div>
           <div class="proof-step">
             <h3 class="proof-step__title">
               <span class="proof-step__title-mask">
                 <span class="proof-step__title-slide">
-                  <span class="proof-step__title-text">03 / Make it Reusable</span>
-                  <span class="proof-step__title-text">03 / Make it Reusable</span>
+                  <span class="proof-step__title-text" data-config="proof-step-3-title">03 / Make it Reusable</span>
+                  <span class="proof-step__title-text" data-config-title-dup="proof-step-3-title">03 / Make it Reusable</span>
                 </span>
               </span>
             </h3>
             <div class="proof-step__line"></div>
-            <p class="proof-step__desc">One story becomes a long-form case study for axis.com, a social snippet for LinkedIn, a one-pager for the sales team, and an SEO-optimized summary that actually ranks. Same story, four assets.</p>
+            <p class="proof-step__desc" data-config="proof-step-3-desc">One story becomes a long-form case study for axis.com, a social snippet for LinkedIn, a one-pager for the sales team, and an SEO-optimized summary that actually ranks. Same story, four assets.</p>
           </div>
           <div class="proof-step">
             <h3 class="proof-step__title">
               <span class="proof-step__title-mask">
                 <span class="proof-step__title-slide">
-                  <span class="proof-step__title-text">04 / Build the Playbook</span>
-                  <span class="proof-step__title-text">04 / Build the Playbook</span>
+                  <span class="proof-step__title-text" data-config="proof-step-4-title">04 / Build the Playbook</span>
+                  <span class="proof-step__title-text" data-config-title-dup="proof-step-4-title">04 / Build the Playbook</span>
                 </span>
               </span>
             </h3>
             <div class="proof-step__line"></div>
-            <p class="proof-step__desc">Then I turn that process into a framework so your team in Tokyo, Texas, or Taipei can do it without calling me. Although they are welcome to.</p>
+            <p class="proof-step__desc" data-config="proof-step-4-desc">Then I turn that process into a framework so your team in Tokyo, Texas, or Taipei can do it without calling me. Although they are welcome to.</p>
           </div>
         </div>
       </div>
 
-      <p class="proof-closing" id="proofClosing">If you have scrolled this far, I think we both know what comes next.</p>
+      <p class="proof-closing" id="proofClosing" data-config="proof-closing">If you have scrolled this far, I think we both know what comes next.</p>
     </div>
   </section>
 
   <!-- ==================== CTA / CLOSING ==================== -->
-  <section class="closing-section section--cream" id="closingSection">
+  <section class="closing-section section--cream" id="closingSection" data-section="closing">
     <div class="closing-content">
-      <h2 class="closing-heading">I am <span class="closing-name">Paul Frost</span>. I am based in Malmö, a short train ride from your Lund HQ. I am ready to start turning Axis customer stories into your most powerful marketing asset.</h2>
-      <p class="closing-sub">Let's grab a fika and talk about it.</p>
+      <h2 class="closing-heading" data-config="closing-heading">I am <span class="closing-name">Paul Frost</span>. I am based in Malmö, a short train ride from your Lund HQ. I am ready to start turning Axis customer stories into your most powerful marketing asset.</h2>
+      <p class="closing-sub" data-config="closing-sub">Let's grab a fika and talk about it.</p>
       <div class="closing-line"></div>
       <div class="closing-contacts">
-        <span><strong>Email:</strong> <a href="mailto:paul@roamer.se">paul@roamer.se</a></span>
-        <span><strong>Phone:</strong> <a href="tel:+46764510037">+46 764 51 0037</a></span>
+        <span><strong>Email:</strong> <a href="mailto:paul@roamer.se" data-config="contact-email">paul@roamer.se</a></span>
+        <span><strong>Phone:</strong> <a href="tel:+46764510037" data-config="contact-phone">+46 764 51 0037</a></span>
       </div>
     </div>
   </section>
@@ -318,6 +327,7 @@
   <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script src="page-config.js"></script>
   <script src="apply.js"></script>
 </body>
 </html>

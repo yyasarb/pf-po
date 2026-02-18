@@ -3,6 +3,87 @@
    Vanilla JS, no dependencies
    ============================================ */
 
+/* --- Config Population (runs before animations) --- */
+(function applyConfig() {
+  if (!window.PAGE_CONFIG) return;
+  var cfg = PAGE_CONFIG;
+
+  // Populate text from data-config attributes
+  Object.keys(cfg.text).forEach(function(key) {
+    var el = document.querySelector('[data-config="' + key + '"]');
+    if (el) el.innerHTML = cfg.text[key];
+    // Also update duplicate title elements (proof step titles have a dup for animation)
+    var dup = document.querySelector('[data-config-title-dup="' + key + '"]');
+    if (dup) dup.innerHTML = cfg.text[key];
+  });
+
+  // Set company logo
+  var logoImg = document.querySelector('[data-config-logo]');
+  if (logoImg && cfg.company && cfg.company.logo) {
+    logoImg.src = cfg.company.logo;
+    logoImg.alt = cfg.company.name || '';
+  }
+
+  // Set greeting words
+  if (cfg.greeting) {
+    var greetBefore = document.querySelector('[data-config="greeting-before"]');
+    var greetAfter = document.querySelector('[data-config="greeting-after"]');
+    if (greetBefore && cfg.greeting[0]) greetBefore.textContent = cfg.greeting[0];
+    if (greetAfter && cfg.greeting[1]) greetAfter.textContent = cfg.greeting[1];
+  }
+
+  // Set video
+  if (cfg.video && cfg.video.vimeoId) {
+    var iframe = document.querySelector('.video-section__player iframe');
+    if (iframe) {
+      var hash = cfg.video.vimeoHash ? '?h=' + cfg.video.vimeoHash + '&' : '?';
+      iframe.src = 'https://player.vimeo.com/video/' + cfg.video.vimeoId + hash + 'title=0&byline=0&portrait=0&autoplay=1&muted=1&controls=0';
+    }
+  }
+
+  // Populate skills from array
+  if (cfg.skills) {
+    var skillsList = document.querySelector('[data-config-skills]');
+    if (skillsList) {
+      skillsList.innerHTML = '';
+      cfg.skills.forEach(function(skill) {
+        var item = document.createElement('div');
+        item.className = 'skills-item';
+        item.innerHTML =
+          '<span class="skills-item__num">(' + skill.num + ')</span>' +
+          '<span class="skills-item__word">' + skill.word + '</span>' +
+          '<span class="skills-item__desc">' + skill.desc + '</span>';
+        skillsList.appendChild(item);
+      });
+    }
+  }
+
+  // Update contact links href attributes
+  var emailLink = document.querySelector('[data-config="contact-email"]');
+  if (emailLink && cfg.text['contact-email']) {
+    emailLink.href = 'mailto:' + cfg.text['contact-email'];
+  }
+  var phoneLink = document.querySelector('[data-config="contact-phone"]');
+  if (phoneLink && cfg.text['contact-phone']) {
+    phoneLink.href = 'tel:' + cfg.text['contact-phone'].replace(/\s/g, '');
+  }
+
+  // Hide sections
+  Object.keys(cfg.sections).forEach(function(key) {
+    if (!cfg.sections[key]) {
+      var sections = document.querySelectorAll('[data-section="' + key + '"]');
+      sections.forEach(function(section) {
+        section.style.display = 'none';
+      });
+    }
+  });
+
+  // Refresh ScrollTrigger after hiding sections
+  if (typeof ScrollTrigger !== 'undefined') {
+    setTimeout(function() { ScrollTrigger.refresh(); }, 100);
+  }
+})();
+
 /* --- Lenis Smooth Scroll --- */
 (function () {
   if (typeof Lenis === 'undefined') return;
@@ -823,3 +904,10 @@
     }
   });
 })();
+
+/* --- Conditionally load visual editor --- */
+if (window.location.search.indexOf('edit') !== -1) {
+  var editorScript = document.createElement('script');
+  editorScript.src = 'editor.js';
+  document.body.appendChild(editorScript);
+}
