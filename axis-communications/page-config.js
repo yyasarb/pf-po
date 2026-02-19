@@ -46,7 +46,7 @@ var PAGE_CONFIG = {
     "proof-step-4-title": "04 / Build the Playbook",
     "proof-step-4-desc": "Then I turn that process into a framework so your team in Tokyo, Texas, or Taipei can do it without calling me. Although they are welcome to.",
     "proof-closing": "If you have scrolled this far, I think we both know what comes next.",
-    "closing-heading": "I am <span class=\"closing-name\">Paul Frost</span>. I am based in Malmö, a short train ride from your Lund HQ. I am ready to start turning Axis customer stories into your most powerful marketing asset.",
+    "closing-heading": "I am <span class=\"closing-name\">Paul Frost</span>. I am based in Malmö, a short train ride from your Lund HQ. I hear there is Friday cake. That alone would have convinced me, but the role is pretty great too.",
     "closing-sub": "Let's grab a fika and talk about it.",
     "contact-email": "paul@roamer.se",
     "contact-phone": "+46 764 51 0037"
