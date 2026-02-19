@@ -1001,7 +1001,7 @@ section + section {
   font-family: 'IvyPresto Headline', var(--font-serif);
   font-size: 6rem;
   font-weight: 400;
-  line-height: 0.8;
+  line-height: 0.9;
   letter-spacing: -0.02em;
   margin-bottom: 32px;
 }
@@ -1733,9 +1733,9 @@ section + section {
 }
 
 .closing-heading {
-  font-family: 'IvyPresto Headline', var(--font-serif);
+  font-family: 'ivypresto-headline', 'IvyPresto Headline', var(--font-serif);
   font-size: clamp(1.8rem, 1.4rem + 2vw, 2.8rem);
-  font-weight: 400;
+  font-weight: 300;
   font-style: italic;
   line-height: 1.2;
   letter-spacing: -0.02em;
@@ -1743,7 +1743,7 @@ section + section {
 }
 
 .closing-name {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .closing-sub {
