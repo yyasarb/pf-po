@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <!-- Early mouse/pointer tracker — must be before all other scripts -->
+  <script>
+    window.__mouseX = 0;
+    window.__mouseY = 0;
+    window.__mouseActive = false;
+    function __onPointer(e) {
+      window.__mouseActive = true;
+      window.__mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+      window.__mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+    }
+    document.addEventListener('mousemove', __onPointer, true);
+    document.addEventListener('pointermove', __onPointer, true);
+  </script>
+
+  <title>Paul Frost — Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Block indexing -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+
+  <!-- Preload fonts to prevent layout shift -->
+  <link rel="preload" href="fonts/IvyPrestoHeadline-SemiBold.otf" as="font" type="font/opentype" crossorigin>
+  <link rel="preload" href="fonts/IvyPrestoHeadline-Regular.otf" as="font" type="font/opentype" crossorigin>
+  <link rel="preload" href="fonts/IvyPrestoHeadline-LightItalic.otf" as="font" type="font/opentype" crossorigin>
+  <link rel="stylesheet" href="https://use.typekit.net/nys7xhm.css">
+
+  <!-- Prevent browser scroll restoration -->
+  <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
+
+  <!-- Three.js import map -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="images/favicon.jpg" type="image/x-icon">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0MMM3S6R1P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-0MMM3S6R1P');
+  </script>
+</head>
+<body>
+  <div class="grain-overlay"></div>
+
+  <!-- ==================== LOGO ==================== -->
+  <a href="#" class="hero__logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+    <img src="images/paulfrost-logo.svg" alt="Paul Frost">
+  </a>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero section--cream" data-section="hero">
+    <div class="hero__bust" id="heroBust"></div>
+
+    <div class="hero__main">
+      <h1 class="hero__heading hero-fade" style="--fade-delay: 0.2s">Whatever you are here for, I have probably already done it. And if I have not, <em class="heading-italic">give me a week.</em></h1>
+      <p class="hero__subtitle hero-fade" style="--fade-delay: 0.3s">I am Paul Frost. I build brands, tell stories, and make complex things feel simple — across channels, markets, and mediums.</p>
+    </div>
+
+    <div class="section-outro">
+      <p class="section-outro__text hero-fade" style="--fade-delay: 0.5s">Now let me show you what that actually looks like.</p>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Lenis smooth scroll init -->
+  <script>
+  (function () {
+    if (typeof Lenis === 'undefined') return;
+
+    var lenis = new Lenis({
+      duration: 1.2,
+      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+      smoothWheel: true
+    });
+
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function (time) {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    }
+  })();
+
+  (function () {
+    'use strict';
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    window.addEventListener('beforeunload', function () {
+      window.scrollTo(0, 0);
+    });
+  })();
+  </script>
+
+  <script type="module" src="bust.js"></script>
+</body>
+</html>
