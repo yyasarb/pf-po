@@ -62,6 +62,9 @@ function init(container) {
 
     // Keep original textures from GLB (no material override)
 
+    // Initial rotation — slightly looking left
+    bust.rotation.y = -0.3;
+
     scene.add(bust);
   });
 
@@ -87,14 +90,14 @@ function init(container) {
       },
     });
 
-    // Fade out towards end of hero
+    // Fade out — fully gone before works section
     gsap.to(container, {
       opacity: 0,
       ease: 'none',
       scrollTrigger: {
         trigger: '.hero',
-        start: '60% top',
-        end: 'bottom top',
+        start: '40% top',
+        end: '80% top',
         scrub: true,
       },
     });
@@ -104,6 +107,10 @@ function init(container) {
   function animate() {
     requestAnimationFrame(animate);
     if (!isVisible || !bust) return;
+
+    // Skip rendering when faded out by scroll (GSAP sets inline opacity)
+    var op = parseFloat(container.style.opacity);
+    if (op <= 0.01 && !isNaN(op)) return;
 
     // Idle motion — faster on mobile/tablet, slower on desktop
     const isMobile = window.innerWidth <= 1024;
@@ -116,7 +123,7 @@ function init(container) {
     const cursorY = window.__mouseActive ? window.__mouseX * MAX_ROT_Y : 0;
 
     bust.rotation.x = idleX + cursorX;
-    bust.rotation.y = idleY + cursorY;
+    bust.rotation.y = -0.3 + idleY + cursorY;
 
     renderer.render(scene, camera);
   }
