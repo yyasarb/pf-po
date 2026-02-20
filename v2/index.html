@@ -88,6 +88,7 @@
 
     <!-- Search bar -->
     <div class="search" id="searchBox">
+      <div class="search__inner">
       <div class="search__bar">
         <svg class="search__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
@@ -99,24 +100,40 @@
       <div class="search__suggestions" id="searchSuggestions">
         <div class="search__suggestion" data-index="0">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <span>a <strong>handsome</strong> brand designer</span>
+          <span><strong>handsome</strong> brand designer</span>
         </div>
         <div class="search__suggestion" data-index="1">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <span>a <strong>brand</strong> designer who <strong>delivers</strong></span>
+          <span><strong>brand</strong> designer who <strong>delivers</strong></span>
         </div>
         <div class="search__suggestion" data-index="2">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <span>a <strong>handsome</strong> brand designer <strong>with a cat</strong></span>
+          <span><strong>brand builder who has</strong> done <strong>it</strong> for himself first</span>
         </div>
+      </div>
       </div>
     </div>
 
     <!-- Found text -->
     <p class="works__found" id="worksFound">Looks like you found exactly what you were looking for.</p>
 
+    <!-- Loading spinner -->
+    <div class="works__loader" id="worksLoader">
+      <div class="works__spinner"></div>
+    </div>
+
     <!-- Work case content -->
     <div class="works__case" id="worksCase">
+      <div class="works__info">
+        <h3 class="works__title" id="worksTitle">Liberte Coffee</h3>
+        <p class="works__desc" id="worksDesc">Liberte started as an idea and became a cold brew coffee brand in eight countries across four continents. I built the brand DNA, led the design teams, sourced materials, set up production, and handled distribution. Everything recyclable. Everything intentional. Gold foil on raw cardboard because sustainability should not mean looking like you gave up.</p>
+      </div>
+      <div class="works__image" id="worksImageContainer">
+        <div class="works__card" id="worksCard">
+          <video id="worksVideo" src="videos/liberte.mp4" poster="images/liberte.jpg"
+            autoplay muted loop playsinline></video>
+        </div>
+      </div>
       <div class="works__tags">
         <p class="works__tags-label">People also searched for these to end up here:</p>
         <ul class="works__tag-list" id="worksTagList">
@@ -131,13 +148,6 @@
           <li>Team Leadership</li>
         </ul>
       </div>
-      <div class="works__image">
-        <img src="images/liberte.jpg" alt="Liberte Coffee" id="worksImage">
-      </div>
-      <div class="works__info">
-        <h3 class="works__title" id="worksTitle">Liberte Coffee</h3>
-        <p class="works__desc" id="worksDesc">Liberte started as an idea and became a cold brew coffee brand in eight countries across four continents. I built the brand DNA, led the design teams, sourced materials, set up production, and handled distribution. Everything recyclable. Everything intentional. Gold foil on raw cardboard because sustainability should not mean looking like you gave up.</p>
-      </div>
     </div>
 
     <!-- Pagination -->
@@ -149,7 +159,6 @@
       <button class="works__page" data-page="4">5</button>
       <button class="works__page" data-page="5">6</button>
       <button class="works__page" data-page="6">7</button>
-      <button class="works__page" data-page="7">8</button>
       <button class="works__page works__page--next" id="worksNext">next</button>
     </nav>
 
