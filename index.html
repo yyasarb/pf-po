@@ -581,17 +581,17 @@
       <!-- Bottom navigation bar (mobile only) -->
       <div class="gmail__bottom-bar">
         <div class="gmail__bottom-bar-item is-active">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 6 10-6"/></svg>
-          <span>Mail</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          <span>Clients</span>
         </div>
-        <div class="gmail__bottom-bar-item">
+        <a class="gmail__bottom-bar-item" href="mailto:paul@roamer.se?subject=Let%27s%20schedule%20a%20call.%20I%20have%20a%20project%20in%20mind.">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-          <span>Calendar</span>
-        </div>
-        <div class="gmail__bottom-bar-item">
+          <span>Book a Time</span>
+        </a>
+        <a class="gmail__bottom-bar-item" href="mailto:paul@roamer.se?subject=Saw%20your%20inbox.%20Want%20to%20be%20in%20it.%20Here%20is%20what%20I%20have%20in%20mind.">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
           <span>Chat</span>
-        </div>
+        </a>
       </div>
     </div>
 
@@ -629,6 +629,7 @@
     <div class="about__content">
       <div class="about__photo">
         <img src="images/portrait.jpg" alt="Paul Frost">
+        <img class="about__signature" src="images/signature.png" alt="Paul signature">
       </div>
       <div class="about__body">
         <p>I grew up sitting upside down on couches, climbing trees, ropes, and rocks. Most things have changed since then. My love for cats has not. Neither has the humbling equality that nature offers or my need to be somewhere wild.</p>
@@ -1064,8 +1065,15 @@
       activeTooltip = tip;
 
       // Position at cursor
-      tip.style.left = e.clientX + 'px';
       tip.style.top = e.clientY + 'px';
+
+      // Horizontal: align left or right edge to click point based on screen half
+      var vw = window.innerWidth;
+      if (e.clientX <= vw / 2) {
+        tip.style.left = e.clientX + 'px';
+      } else {
+        tip.style.left = (e.clientX - tip.offsetWidth) + 'px';
+      }
 
       // Stay 1s, then fade out
       fadeTimer = setTimeout(function () {
@@ -1137,13 +1145,28 @@
           nav.classList.remove('is-open');
         }
 
-        var target = document.querySelector('[data-section="' + link.getAttribute('data-nav-target') + '"]');
-        if (!target) return;
+        var navTarget = link.getAttribute('data-nav-target');
+        var section = document.querySelector('[data-section="' + navTarget + '"]');
+        if (!section) return;
+
+        var isMobile = window.innerWidth <= 767;
+        var target, offset;
+        if (isMobile && navTarget === 'works') {
+          target = document.getElementById('searchBox') || section;
+          offset = window.innerHeight * 0.06;
+        } else if (isMobile) {
+          target = section.children[0] || section;
+          offset = window.innerHeight * 0.06;
+        } else {
+          target = section;
+          offset = 0;
+        }
 
         if (window.lenis) {
-          window.lenis.scrollTo(target, { duration: 1.2, force: true });
+          window.lenis.scrollTo(target, { duration: 1.2, force: true, offset: -offset });
         } else {
-          target.scrollIntoView({ behavior: 'smooth' });
+          var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: top, behavior: 'smooth' });
         }
       });
     });

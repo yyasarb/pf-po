@@ -5,12 +5,9 @@
 (function () {
   'use strict';
 
-  if (typeof gsap === 'undefined' || typeof Observer === 'undefined' || !window.lenis) return;
-<<<<<<< HEAD:v2/snap.js
-  if (window.innerWidth <= 768) return;
-=======
+  var lenis = window.lenis;
+  if (typeof gsap === 'undefined' || typeof Observer === 'undefined' || !lenis) return;
   if (window.innerWidth <= 767) return;
->>>>>>> f7423b2 (Promote v2 to homepage, remove old Webflow site):snap.js
 
   gsap.registerPlugin(Observer);
 
@@ -28,36 +25,21 @@
   /* ---------- State ---------- */
   var currentIndex = 0;
   var isSnapping = false;
-<<<<<<< HEAD:v2/snap.js
-  var SNAP_COOLDOWN = 300;
-  var SNAP_DURATION = 1.2;
-=======
-  var SNAP_COOLDOWN = 400;
-  var SNAP_DURATION = 1.8;
->>>>>>> f7423b2 (Promote v2 to homepage, remove old Webflow site):snap.js
+  var snapTimer = null;
+  var SNAP_COOLDOWN = 100;
+  var SNAP_DURATION = 1.4;
+  var SAFETY_TIMEOUT = (SNAP_DURATION * 1000) + 400;
 
   /* ---------- Helpers ---------- */
   function sectionTop(el) {
     return el.getBoundingClientRect().top + window.scrollY;
   }
 
-  /* ---------- Block native scroll while snapping ---------- */
-  window.addEventListener('wheel', function (e) {
-    if (isSnapping) {
-      e.preventDefault();
-    }
-  }, { passive: false });
-
-  var touchStartY = 0;
-  window.addEventListener('touchstart', function (e) {
-    touchStartY = e.touches[0].clientY;
-  }, { passive: true });
-
-  window.addEventListener('touchmove', function (e) {
-    if (isSnapping) {
-      e.preventDefault();
-    }
-  }, { passive: false });
+  function unlock() {
+    clearTimeout(snapTimer);
+    isSnapping = false;
+    lenis.start();
+  }
 
   /* ---------- Snap ---------- */
   function snapTo(index) {
@@ -66,14 +48,28 @@
     isSnapping = true;
     currentIndex = index;
 
-    window.lenis.scrollTo(sections[index], {
+    // Stop Lenis so it doesn't fight the snap
+    lenis.stop();
+
+    // Safety: always unlock if animation doesn't complete
+    clearTimeout(snapTimer);
+    snapTimer = setTimeout(unlock, SAFETY_TIMEOUT);
+
+    // Animate scroll position directly via GSAP tween
+    var startY = window.scrollY;
+    var endY = sectionTop(sections[index]);
+    var obj = { y: startY };
+
+    gsap.to(obj, {
+      y: endY,
       duration: SNAP_DURATION,
-      force: true,
-      lock: true,
+      ease: 'power3.inOut',
+      onUpdate: function () {
+        window.scrollTo(0, obj.y);
+      },
       onComplete: function () {
-        setTimeout(function () {
-          isSnapping = false;
-        }, SNAP_COOLDOWN);
+        clearTimeout(snapTimer);
+        setTimeout(unlock, SNAP_COOLDOWN);
       }
     });
   }
@@ -94,12 +90,8 @@
   /* ---------- Observer ---------- */
   Observer.create({
     type: 'wheel,touch',
-<<<<<<< HEAD:v2/snap.js
-    tolerance: 50,
-=======
-    tolerance: 120,
->>>>>>> f7423b2 (Promote v2 to homepage, remove old Webflow site):snap.js
-    preventDefault: false,
+    tolerance: 80,
+    preventDefault: true,
     onUp: function () {
       if (isSnapping) return;
       syncIndex();

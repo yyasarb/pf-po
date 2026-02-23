@@ -1,7 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /css/
+Disallow: /js/
+Disallow: /apply/
 Disallow: /axis-communications/
-Disallow: /drobe/
-Disallow: /models/
-Disallow: /fonts/
+
 Sitemap: https://roamer.se/sitemap.xml
