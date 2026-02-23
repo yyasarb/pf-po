@@ -12,8 +12,8 @@
         '<strong>brand</strong> designer who <strong>delivers</strong>',
         '<strong>brand builder who has</strong> done <strong>it</strong> for himself first'
       ],
-      tags: ['Brand Identity', 'Art Direction', 'Brand Voice & DNA', 'Packaging Design', 'Supply Chain', 'International Distribution', 'Sustainability', 'Creative Direction', 'Team Leadership'],
-      image: 'images/liberte.jpg',
+      tags: ['Brand Identity & DNA', 'Art Direction', 'Packaging Design', 'Supply Chain', 'International Distribution', 'Sustainability', 'Creative Direction', 'Team Leadership'],
+      image: null,
       video: 'videos/liberte.mp4',
       title: 'Liberte Coffee',
       desc: 'Liberte started as an idea and became a cold brew coffee brand in eight countries across four continents. I built the brand DNA, led the design teams, sourced materials, set up production, and handled distribution. Everything recyclable. Everything intentional. Gold foil on raw cardboard because sustainability should not mean looking like you gave up.'
@@ -25,9 +25,10 @@
         '<strong>marketing that works</strong> while you sleep',
         '<strong>someone who actually reads</strong> Google Analytics'
       ],
-      tags: ['SEO Strategy', 'Content Marketing', 'Brand Creation', 'E-Commerce', 'Organic Growth', 'Copywriting', 'Sales Strategy', 'Analytics', 'AI Automation', 'Generative AI', 'Content Systems'],
-      image: 'images/liberte.jpg',
-      video: 'videos/liberte.mp4',
+      tags: ['SEO Strategy', 'Brand Creation', 'E-Commerce', 'Organic Growth', 'Copywriting', 'Sales Strategy', 'Analytics', 'AI Automation', 'Generative AI', 'Content Systems'],
+      hideMobile: ['Sales Strategy', 'Copywriting'],
+      image: null,
+      video: 'videos/terralina.mp4',
       title: 'Terralina',
       desc: 'Terralina started with no audience, no ads, and no budget for either. I built the brand, wrote SEO driven content, built AI automation tools for image generation and content creation, and generated sales within the first month. Zero ad spend. All organic. When your systems do the selling, you do not need a media budget.'
     },
@@ -39,8 +40,9 @@
         '<strong>full stack</strong> but make it <strong>beautiful</strong>'
       ],
       tags: ['Full Stack Development', 'Web Application', 'UX Design', 'Backend', 'Frontend Development', 'Database Architecture', 'Brand Identity', 'Bilingual Platform'],
-      image: 'images/liberte.jpg',
-      video: 'videos/liberte.mp4',
+      hideMobile: ['Frontend Development'],
+      image: null,
+      video: 'videos/fikola.mp4',
       title: 'Fikola',
       desc: 'Fikola is a bilingual ride-sharing platform I built from scratch. Not just the brand. The actual product. Backend, frontend, database, email systems, deployment. One person, zero investors, fully functional. Free to use, no ads, no data selling. Just a working platform that solves a real problem. Visit fikola.com and see for yourself.'
     },
@@ -51,9 +53,9 @@
         '<strong>filmmaker who</strong> brings his own <strong>snacks on location</strong>',
         '<strong>filmmaker who does</strong> not need a full crew to <strong>deliver</strong>'
       ],
-      tags: ['Director of Photography', 'Documentary Filmmaking', 'Pre-Production Research', 'Interview Sourcing', 'Location Scouting', 'Cinematography', 'Aerial Cinematography', 'International Production', 'Cross-Border Collaboration'],
-      image: 'images/liberte.jpg',
-      video: 'videos/liberte.mp4',
+      tags: ['Director of Photography', 'Documentary Filmmaking', 'Pre-Production Research', 'Interview Sourcing', 'Location Scouting', 'Cinematography', 'Aerial Cinematography', 'Cross-Border Collaboration'],
+      image: null,
+      video: 'videos/business.mp4',
       title: 'Business Insider',
       desc: 'Eight million views. That is how many people watched a documentary I shot for Business Insider. I did not just show up with a camera. I researched the subject, found the people worth interviewing, scouted every location, and filmed across Norway and Nigeria while working with a UK based producer. Cinematography and aerial. Pre-production to final delivery.'
     },
@@ -64,9 +66,9 @@
         '<strong>filmmaker</strong> who made someone care about <strong>winter cycling</strong>',
         '<strong>storyteller who does</strong> not need a narrator to <strong>make a point</strong>'
       ],
-      tags: ['Documentary Filmmaking', 'Storytelling', 'Sit Down Interviews', 'Cinematography', 'Color Grading', 'Narrative Film', 'Multi-Country Production', 'Urban Planning', 'Sustainability Content'],
-      image: 'images/liberte.jpg',
-      video: 'videos/liberte.mp4',
+      tags: ['Documentary Filmmaking', 'Storytelling', 'Sit Down Interviews', 'Cinematography', 'Color Grading', 'Narrative Film', 'Multi-Country Production', 'Sustainability Content'],
+      image: null,
+      video: 'videos/eit.mp4',
       title: 'EIT Urban Mobility',
       desc: 'Can you bike to work when it is minus forty? That is the kind of question I turned into a film people actually wanted to watch. Multiple documentary and narrative projects for EIT Urban Mobility, shot across three countries. Complex problems around urban planning and sustainable transport, told through real people and real stories. Interviews, cinematography, color grading, and storytelling that makes innovation feel human instead of institutional.'
     },
@@ -77,9 +79,9 @@
         '<strong>filmmaker who finds the story</strong> you did not know was there',
         '<strong>filmmaker who</strong> makes strangers <strong>feel like someone</strong> you know'
       ],
-      tags: ['Director', 'Cinematic Storytelling', 'Portrait Film', 'Customer Stories', 'Narrative Filmmaking', 'Cinematography', 'Art Direction', 'Brand Storytelling', 'Human Interest'],
-      image: 'images/liberte.jpg',
-      video: 'videos/liberte.mp4',
+      tags: ['Director', 'Cinematic Storytelling', 'Portrait Film', 'Customer Stories', 'Narrative Filmmaking', 'Cinematography', 'Art Direction', 'Brand Storytelling'],
+      image: null,
+      video: 'videos/youcannot.mp4',
       title: 'You Cannot Hide',
       desc: 'A glass artist on Bornholm, working alone in her studio between silence and heat. No script. No product placement. No voiceover telling you what to feel. Just a real person and the invisible process that shapes her work. I directed and produced "You Cannot Hide," a cinematic portrait of Manon Hillereau. This is the approach that works for customer stories. Follow someone in their world, let the craft speak, and the brand becomes felt instead of forced.'
     },
@@ -90,9 +92,9 @@
         '<strong>aerial cinematographer</strong> who has never lost a drone <strong>(on camera)</strong>',
         '<strong>pilot who gets the shot</strong> and the paperwork right'
       ],
-      tags: ['Licensed Drone Operator', 'Aerial Cinematography', 'European Drone Regulations', 'Airspace Planning', 'Flight Permits', 'Safety Protocols', 'Restricted Airspace Operations', 'Cinematic Filming', 'Production Planning', 'DJI Systems'],
-      image: 'images/liberte.jpg',
-      video: 'videos/liberte.mp4',
+      tags: ['Licensed Drone Operator', 'Aerial Cinematography', 'European Drone Regulations', 'Airspace Planning', 'Flight Permits', 'Safety Protocols', 'Cinematic Filming', 'Production Planning'],
+      image: null,
+      video: 'videos/drone.mp4',
       title: 'Aerial Cinematography',
       desc: 'The difference between a drone operator and an aerial cinematographer is paperwork, planning, and taste. I handle all three. Licensed, regulation-fluent, and experienced in restricted airspace operations across Europe. I do not just fly up and press record. I plan the shot, file the permits, and deliver footage that looks like it belongs on a cinema screen.'
     }
@@ -119,6 +121,7 @@
   var nextButton    = document.getElementById('worksNext');
   var section       = document.getElementById('worksSection');
 
+
   var currentWork   = 0;
   var isAnimating   = false;
   var cycleTimer    = null;
@@ -126,6 +129,14 @@
   var hasStarted    = false;
   var transitionId  = 0;
   var suggestionTimers = [];
+  var intentionalPause = false;
+
+  // Resume video if browser auto-pauses it (e.g. off-screen optimization)
+  worksVideo.addEventListener('pause', function () {
+    if (!intentionalPause && caseEl.classList.contains('is-visible')) {
+      worksVideo.play().catch(function () {});
+    }
+  });
 
   function clearSuggestionTimers() {
     suggestionTimers.forEach(function (id) { clearTimeout(id); });
@@ -360,19 +371,22 @@
     worksTitle.textContent = work.title;
 
     // Update tags
+    var hideSet = work.hideMobile || [];
     tagList.innerHTML = work.tags.map(function (tag) {
-      return '<li>' + tag + '</li>';
+      var attr = hideSet.indexOf(tag) !== -1 ? ' data-hide-mobile' : '';
+      return '<li' + attr + '>' + tag + '</li>';
     }).join('');
 
     // Swap media source
-    worksVideo.poster = work.image;
+    intentionalPause = false;
+    worksVideo.removeAttribute('poster');
     if (work.video) {
       worksVideo.src = work.video;
       worksVideo.load();
     } else {
+      intentionalPause = true;
       worksVideo.pause();
       worksVideo.removeAttribute('src');
-      worksVideo.poster = work.image;
     }
 
     // Snap card rotation to current mouse position (no lerp jump on appear)
@@ -427,7 +441,7 @@
         opacity: 0,
         duration: 0.3,
         stagger: 0.02,
-        ease: 'none'
+        ease: 'power2.out'
       });
 
       // 2. Description — letter by letter
@@ -437,7 +451,7 @@
         duration: 0.2,
         stagger: 0.008,
         delay: 0.3,
-        ease: 'none'
+        ease: 'power2.out'
       });
 
       // 3. Tags label — letter by letter
@@ -448,7 +462,7 @@
         duration: 0.2,
         stagger: 0.01,
         delay: 0.6,
-        ease: 'none'
+        ease: 'power2.out'
       });
     }
 
@@ -468,11 +482,10 @@
       li.classList.remove('is-visible');
     });
 
-    // Reset card rotation and pause video
+    // Reset card rotation
     cardRotX = 0;
     cardRotY = 0;
     worksCard.style.transform = 'rotateX(0deg) rotateY(0deg)';
-    worksVideo.pause();
   }
 
   /* ============================================
@@ -543,6 +556,7 @@
       // Step 4: Show work case
       await prepareCase(work);
       revealCase();
+  
 
       isAnimating = false;
 
@@ -571,8 +585,9 @@
 
     updatePagination(index);
 
-    // 1. Hide "found" text
+    // 1. Hide "found" text + section outro
     hideFound();
+
 
     // 2. Delete text + hide suggestions in reverse (wait for both)
     await Promise.all([hideSuggestionsReverse(), deleteText(searchText)]);
@@ -611,6 +626,7 @@
     await prepareCase(work);
     revealCase();
 
+
     isAnimating = false;
 
     // 10. Schedule next auto-cycle
@@ -636,6 +652,7 @@
     if (caseEl.classList.contains('is-visible')) {
       transitionToWork(index);
     } else {
+  
       resetAll();
       setTimeout(function () {
         playWork(index);

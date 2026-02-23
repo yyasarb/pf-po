@@ -24,6 +24,10 @@
   <meta name="robots" content="noindex, nofollow">
   <meta name="googlebot" content="noindex, nofollow">
 
+  <!-- Preload heavy assets -->
+  <link rel="preload" href="models/bust.glb" as="fetch" crossorigin>
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" as="script" crossorigin>
+
   <!-- Preload fonts to prevent layout shift -->
   <link rel="preload" href="fonts/IvyPrestoHeadline-SemiBold.otf" as="font" type="font/opentype" crossorigin>
   <link rel="preload" href="fonts/IvyPrestoHeadline-Regular.otf" as="font" type="font/opentype" crossorigin>
@@ -60,11 +64,24 @@
 </head>
 <body>
   <div class="grain-overlay"></div>
+  <span class="works__cursor-text" id="worksCursorText">Case study coming. Coffee first.</span>
 
-  <!-- ==================== LOGO ==================== -->
+  <!-- ==================== LOGO & NAV ==================== -->
   <a href="#" class="hero__logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
     <img src="images/paulfrost-logo.svg" alt="Paul Frost">
   </a>
+
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span class="hamburger__line"></span>
+    <span class="hamburger__line"></span>
+  </button>
+
+  <nav class="site-nav" id="siteNav">
+    <a class="site-nav__link" data-nav-target="works">work</a>
+    <a class="site-nav__link" data-nav-target="clients">reference</a>
+    <a class="site-nav__link" data-nav-target="about">about</a>
+    <a class="site-nav__link" data-nav-target="contact">contact</a>
+  </nav>
 
   <!-- ==================== HERO ==================== -->
   <section class="hero section--cream" data-section="hero">
@@ -130,7 +147,7 @@
       </div>
       <div class="works__image" id="worksImageContainer">
         <div class="works__card" id="worksCard">
-          <video id="worksVideo" src="videos/liberte.mp4" poster="images/liberte.jpg"
+          <video id="worksVideo" src="videos/liberte.mp4"
             autoplay muted loop playsinline></video>
         </div>
       </div>
@@ -168,10 +185,475 @@
     </div>
   </section>
 
+  <!-- ==================== CLIENTS ==================== -->
+  <section class="clients section--cream" data-section="clients">
+
+    <div class="clients__inner">
+
+    <!-- Gmail testimonial inbox -->
+    <div class="gmail">
+      <!-- Notice overlay — fades out when loader completes -->
+      <!-- Top bar -->
+      <div class="gmail__topbar">
+        <button class="gmail__hamburger" aria-label="Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <div class="gmail__logo">
+          <img src="images/gmaillogo.png" alt="Pmail" height="24">
+          <span>Pmail</span>
+        </div>
+        <div class="gmail__search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+          <span class="gmail__search-text">Search mail</span>
+          <svg class="gmail__search-filter" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+        </div>
+        <div class="gmail__topbar-right">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v0M12 12v4"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          <img class="gmail__avatar" src="images/gmail-avatar.jpg" alt="Paul Frost">
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="gmail__body">
+        <!-- Notice overlay — fades out when loader completes -->
+        <div class="gmail__notice" id="gmailNotice">
+          <p>NOTICE: You are entering a <em class="clients__intro-highlight">private inbox</em>. All emails are confidential and should not be shared. Just kidding. Please share them. I need the work.</p>
+        </div>
+        <!-- Left Sidebar -->
+        <aside class="gmail__sidebar">
+          <div class="gmail__drawer-logo">
+            <img src="images/gmaillogo.png" alt="Pmail" height="24">
+            <span>Pmail</span>
+          </div>
+          <a class="gmail__compose" href="mailto:paul@roamer.se?subject=Saw%20your%20inbox.%20Want%20to%20be%20in%20it.%20Here%20is%20what%20I%20have%20in%20mind.">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            <span>Compose</span>
+          </a>
+          <nav class="gmail__nav">
+            <a class="gmail__nav-item is-active">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 6 10-6"/></svg>
+              <span>Inbox</span>
+              <span class="gmail__nav-count">26,811</span>
+            </a>
+            <a class="gmail__nav-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span>Starred</span>
+            </a>
+            <a class="gmail__nav-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+              <span>Sent</span>
+            </a>
+            <a class="gmail__nav-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              <span>More</span>
+            </a>
+          </nav>
+          <div class="gmail__labels">
+            <div class="gmail__labels-header">My favourites</div>
+            <a class="gmail__label-item">
+              <img class="gmail__label-logo" src="images/logos/eit.png" alt="EIT Urban Mobility">
+              <span>EIT Urban Mobility</span>
+            </a>
+            <a class="gmail__label-item">
+              <img class="gmail__label-logo" src="images/logos/canon.png" alt="Canon">
+              <span>Canon</span>
+            </a>
+            <a class="gmail__label-item">
+              <img class="gmail__label-logo" src="images/logos/business-insider.png" alt="Business Insider">
+              <span>Business Insider</span>
+            </a>
+            <a class="gmail__label-item">
+              <img class="gmail__label-logo" src="images/logos/adidem.png" alt="Adidem Asterisks">
+              <span>Adidem Asterisks</span>
+            </a>
+            <a class="gmail__label-item">
+              <img class="gmail__label-logo" src="images/logos/dell.png" alt="Dell">
+              <span>Dell</span>
+            </a>
+            <a class="gmail__label-item">
+              <img class="gmail__label-logo" src="images/logos/dezeen.png" alt="Dezeen">
+              <span>Dezeen</span>
+            </a>
+            <a class="gmail__label-item">
+              <img class="gmail__label-logo" src="images/logos/channel5.png" alt="Channel 5">
+              <span>Channel 5</span>
+            </a>
+            <a class="gmail__label-item">
+              <img class="gmail__label-logo" src="images/logos/liberte.png" alt="Libert&#233;">
+              <span>Libert&#233; Coffee</span>
+            </a>
+            <a class="gmail__label-item">
+              <img class="gmail__label-logo" src="images/logos/terralina.png" alt="Terralina">
+              <span>Terralina</span>
+            </a>
+            <a class="gmail__label-item">
+              <img class="gmail__label-logo" src="images/logos/interreg.png" alt="Interreg Euro-MED">
+              <span>Interreg Euro-MED</span>
+            </a>
+          </div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="gmail__content">
+          <div class="gmail__section-label">Important</div>
+          <!-- Email list -->
+          <div class="gmail__emails">
+            <!-- Loading bar overlay -->
+            <div class="gmail__loader" id="gmailLoader">
+              <div class="gmail__loader-bar"></div>
+            </div>
+            <!-- Email rows -->
+            <div class="gmail__email is-unread" data-email-id="0" data-avatar="M">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">Malaurie Chokoual&#233; Datou</span>
+              <span class="gmail__email-subject"><strong>Re: UMX project feedback</strong> <span class="gmail__email-preview">— Working with you has been an absolute pleasure. Your dedication and professionalism stand out</span></span>
+              <span class="gmail__email-date">22 Feb</span>
+            </div>
+            <div class="gmail__email is-unread" data-email-id="1" data-avatar="F">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">Fredrik Edstr&#246;m</span>
+              <span class="gmail__email-subject"><strong>Kebnekaise footage is incredible</strong> <span class="gmail__email-preview">— You were a fantastic cinematographer on our helicopter shoot. Your eye for cinematic shots</span></span>
+              <span class="gmail__email-date">22 Feb</span>
+            </div>
+            <div class="gmail__email is-unread" data-email-id="2" data-avatar="S">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">Sonia Singh</span>
+              <span class="gmail__email-subject"><strong>Re: Drone footage delivery</strong> <span class="gmail__email-preview">— It was a pleasure to work with you. Proudfoot enlisted your help for a drone shoot and were thrilled</span></span>
+              <span class="gmail__email-date">21 Feb</span>
+            </div>
+            <div class="gmail__email is-unread" data-email-id="3" data-avatar="E">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">Erkan Ozbakir</span>
+              <span class="gmail__email-subject"><strong>Re: Terralina results</strong> <span class="gmail__email-preview">— You did not just build our brand. You built the entire engine behind it</span></span>
+              <span class="gmail__email-date">21 Feb</span>
+            </div>
+            <div class="gmail__email" data-email-id="4" data-avatar="C">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">Claude (Anthropic)</span>
+              <span class="gmail__email-subject">You have been talking to me for 6 hours straight <span class="gmail__email-preview">— Paul, I appreciate the dedication but have you considered eating something?</span></span>
+              <span class="gmail__email-date">20 Feb</span>
+            </div>
+            <div class="gmail__email" data-email-id="5" data-avatar="A">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">Adobe Creative Cloud</span>
+              <span class="gmail__email-subject">Your apps have been updated <span class="gmail__email-preview">— Premiere Pro, After Effects, and Photoshop have been updated to the latest version</span></span>
+              <span class="gmail__email-date">20 Feb</span>
+            </div>
+            <div class="gmail__email" data-email-id="6" data-avatar="D">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">DaVinci Resolve</span>
+              <span class="gmail__email-subject">New color grading tools available <span class="gmail__email-preview">— Blackmagic Design is excited to announce DaVinci Resolve 20 with enhanced HDR grading</span></span>
+              <span class="gmail__email-date">19 Feb</span>
+            </div>
+            <div class="gmail__email" data-email-id="7" data-avatar="S">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">Shopify</span>
+              <span class="gmail__email-subject">You made a sale <span class="gmail__email-preview">— Congratulations! Terralina.co just received a new order from Austin, Texas</span></span>
+              <span class="gmail__email-date">19 Feb</span>
+            </div>
+            <div class="gmail__email" data-email-id="8" data-avatar="N">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">Notion</span>
+              <span class="gmail__email-subject">Your workspace is getting popular <span class="gmail__email-preview">— 3 team members accessed your workspace this week. Most viewed page: &quot;Things I should have done yesterday&quot;</span></span>
+              <span class="gmail__email-date">18 Feb</span>
+            </div>
+            <div class="gmail__email" data-email-id="9" data-avatar="R">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">RED Digital Cinema</span>
+              <span class="gmail__email-subject">DSMC3 firmware update <span class="gmail__email-preview">— A new firmware update is available for your RED camera system</span></span>
+              <span class="gmail__email-date">18 Feb</span>
+            </div>
+            <div class="gmail__email" data-email-id="10" data-avatar="R">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">Resend</span>
+              <span class="gmail__email-subject">Email delivery report for Fikola <span class="gmail__email-preview">— 342 emails sent this month. 98.2% delivery rate. 0 complaints</span></span>
+              <span class="gmail__email-date">17 Feb</span>
+            </div>
+            <div class="gmail__email" data-email-id="11" data-avatar="E">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">Ex girlfriend</span>
+              <span class="gmail__email-subject">WHAT DO YOU MEAN <span class="gmail__email-preview">— I cannot believe you just said that. After everything we have been through</span></span>
+              <span class="gmail__email-date">17 Feb</span>
+            </div>
+            <div class="gmail__email" data-email-id="12" data-avatar="T">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">Triumph Motorcycles</span>
+              <span class="gmail__email-subject">Re: Brand film concept <span class="gmail__email-preview">— Paul, the team loved the treatment you sent. We want to move forward with the northern Norway route</span></span>
+              <span class="gmail__email-date">16 Feb</span>
+            </div>
+            <div class="gmail__email" data-email-id="13" data-avatar="P">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">Patagonia Creative Team</span>
+              <span class="gmail__email-subject">Re: Shoot location confirmed <span class="gmail__email-preview">— Hi Paul, we have confirmed the location in Abisko for the winter campaign</span></span>
+              <span class="gmail__email-date">16 Feb</span>
+            </div>
+            <div class="gmail__email" data-email-id="14" data-avatar="S">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">Spotify</span>
+              <span class="gmail__email-subject">Your 2025 Wrapped is here <span class="gmail__email-preview">— You listened to the same 4 playlists for 2,080 hours. Top genre: &quot;Cinematic Ambient&quot;</span></span>
+              <span class="gmail__email-date">15 Feb</span>
+            </div>
+            <div class="gmail__email" data-email-id="15" data-avatar="Q">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">Quora Digest</span>
+              <span class="gmail__email-subject">Why do I feel like I peaked at 27? <span class="gmail__email-preview">— You are following this thread. 47 new answers including &quot;Because you probably did&quot;</span></span>
+              <span class="gmail__email-date">15 Feb</span>
+            </div>
+            <div class="gmail__email" data-email-id="16" data-avatar="B">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">Bella (cat)</span>
+              <span class="gmail__email-subject">(no subject) <span class="gmail__email-preview">— Fed me late again. This is your final warning.</span></span>
+              <span class="gmail__email-date">14 Feb</span>
+            </div>
+            <div class="gmail__email" data-email-id="17" data-avatar="M">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">Mom</span>
+              <span class="gmail__email-subject">Oglum yemek yiyor musun? <span class="gmail__email-preview">— Paul, mesajima cevap vermedin. Online oldugunu gordum. Beni ara.</span></span>
+              <span class="gmail__email-date">14 Feb</span>
+            </div>
+            <div class="gmail__email" data-email-id="18" data-avatar="G">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">Google Search Console</span>
+              <span class="gmail__email-subject">Performance report for roamer.se <span class="gmail__email-preview">— Your site got 1,247 clicks in the last 28 days. Top query: &quot;filmmaker malmo&quot;</span></span>
+              <span class="gmail__email-date">13 Feb</span>
+            </div>
+            <div class="gmail__email" data-email-id="19" data-avatar="F">
+              <input type="checkbox" class="gmail__checkbox" aria-label="Select">
+              <svg class="gmail__star" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dadce0" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <span class="gmail__email-sender">Figma</span>
+              <span class="gmail__email-subject">Someone left 14 comments on your file <span class="gmail__email-preview">— You have unread comments on &quot;roamer.se homepage v12 FINAL.&quot; Most say &quot;love this&quot;</span></span>
+              <span class="gmail__email-date">13 Feb</span>
+            </div>
+          </div>
+
+          <!-- Email detail view -->
+          <div class="gmail__email-view" id="gmailEmailView">
+            <div class="gmail__email-view-header">
+              <button class="gmail__email-view-back" id="gmailBack" aria-label="Back to inbox">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              </button>
+              <div class="gmail__email-view-header-actions">
+                <span class="gmail__email-view-header-icon" aria-label="Archive">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2"><path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4"/></svg>
+                </span>
+                <span class="gmail__email-view-header-icon" aria-label="Delete">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14"/></svg>
+                </span>
+                <span class="gmail__email-view-header-icon" aria-label="Mark as read">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2"><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+                </span>
+                <span class="gmail__email-view-header-icon" aria-label="More">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="#5f6368"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+                </span>
+              </div>
+              <h2 class="gmail__email-view-subject" id="gmailViewSubject"></h2>
+              <span class="gmail__email-view-badge">Inbox &times;</span>
+            </div>
+            <div class="gmail__email-view-sender">
+              <div class="gmail__email-view-avatar" id="gmailViewAvatar"></div>
+              <div class="gmail__email-view-sender-info">
+                <div>
+                  <strong id="gmailViewSenderName"></strong>
+                  <span class="gmail__email-view-date" id="gmailViewDate"></span>
+                  <span id="gmailViewSenderEmail"></span>
+                </div>
+                <span class="gmail__email-view-to">to me &#9662;</span>
+              </div>
+              <div class="gmail__email-view-sender-actions">
+                <span class="gmail__email-view-sender-icon" aria-label="Smiley">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
+                </span>
+                <span class="gmail__email-view-sender-icon" aria-label="Reply">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2"><path d="M9 17H4a2 2 0 01-2-2V5a2 2 0 012-2h16a2 2 0 012 2v5M21 15l-5 5m0 0l-5-5m5 5V10"/></svg>
+                </span>
+                <span class="gmail__email-view-sender-icon" aria-label="More">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="#5f6368"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+                </span>
+              </div>
+            </div>
+            <div class="gmail__email-view-content" id="gmailViewContent"></div>
+            <div class="gmail__email-view-actions">
+              <button class="gmail__email-view-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 17H4a2 2 0 01-2-2V5a2 2 0 012-2h16a2 2 0 012 2v5M21 15l-5 5m0 0l-5-5m5 5V10"/></svg>
+                Reply
+              </button>
+              <button class="gmail__email-view-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 17H20a2 2 0 002-2V5a2 2 0 00-2-2H4a2 2 0 00-2 2v5M3 15l5 5m0 0l5-5m-5 5V10"/></svg>
+                Forward
+              </button>
+              <button class="gmail__email-view-btn gmail__email-view-btn--emoji">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
+              </button>
+            </div>
+          </div>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="gmail__sidebar-right">
+          <!-- Google Calendar -->
+          <a class="gmail__sidebar-right-icon gmail__calendar-link" title="Calendar" href="mailto:paul@roamer.se?subject=Let%27s%20schedule%20a%20call.%20I%20have%20a%20project%20in%20mind.">
+            <svg width="20" height="20" viewBox="0 0 200 200" fill="none">
+              <path d="M152 200H48c-26.5 0-48-21.5-48-48V48C0 21.5 21.5 0 48 0h104c26.5 0 48 21.5 48 48v104c0 26.5-21.5 48-48 48z" fill="#fff"/>
+              <path d="M152 8H48C25.9 8 8 25.9 8 48v104c0 22.1 17.9 40 40 40h104c22.1 0 40-17.9 40-40V48c0-22.1-17.9-40-40-40z" fill="#fff"/>
+              <path d="M48 0C21.5 0 0 21.5 0 48v8c0-26.5 21.5-48 48-48h104c26.5 0 48 21.5 48 48v-8c0-26.5-21.5-48-48-48H48z" fill="#1a73e8" opacity=".1"/>
+              <path d="M152 0h-52v48c0 26.5-21.5 48-48 48H0v56c0 26.5 21.5 48 48 48h104c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48z" fill="#4285f4"/>
+              <path d="M0 96V48C0 21.5 21.5 0 48 0h52v48c0 26.5-21.5 48-48 48H0z" fill="#1a73e8"/>
+              <path d="M100 0H48C21.5 0 0 21.5 0 48v48h52c26.5 0 48-21.5 48-48V0z" fill="#ea4335"/>
+              <path d="M0 96v56c0 26.5 21.5 48 48 48h52V96H0z" fill="#34a853"/>
+              <path d="M200 96v56c0 26.5-21.5 48-48 48h-52V96h100z" fill="#188038" opacity="0"/>
+              <path d="M152 200h-52v-56c0-22.1 17.9-40 40-40h60v48c0 26.5-21.5 48-48 48z" fill="#188038" opacity="0"/>
+              <rect x="40" y="40" width="120" height="120" rx="8" fill="#fff"/>
+              <text x="100" y="125" text-anchor="middle" font-family="Google Sans,Roboto,Arial" font-size="80" font-weight="500" fill="#1a73e8">22</text>
+            </svg>
+          </a>
+          <!-- Google Keep -->
+          <div class="gmail__sidebar-right-icon" title="Keep">
+            <svg width="20" height="20" viewBox="0 0 64 64" fill="none">
+              <rect x="14" y="4" width="36" height="52" rx="4" fill="#fbbc04"/>
+              <circle cx="32" cy="24" r="8" fill="#fff"/>
+              <rect x="30" y="32" width="4" height="10" fill="#fff"/>
+              <rect x="22" y="46" width="20" height="3" rx="1.5" fill="#fff"/>
+              <rect x="26" y="52" width="12" height="8" fill="#fbbc04"/>
+            </svg>
+          </div>
+          <!-- Google Tasks -->
+          <div class="gmail__sidebar-right-icon" title="Tasks">
+            <svg width="20" height="20" viewBox="0 0 192 192" fill="none">
+              <circle cx="96" cy="96" r="80" fill="#4285f4"/>
+              <path d="M80 96l16 16 32-32" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M128 80l16-16" stroke="#1a56c4" stroke-width="14" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+          <!-- Google Chat -->
+          <div class="gmail__sidebar-right-icon" title="Chat">
+            <svg width="20" height="20" viewBox="0 0 48 48" fill="none">
+              <path d="M24 4C12.95 4 4 12.95 4 24c0 3.85 1.1 7.45 3 10.5L4 44l9.5-3c3.05 1.9 6.65 3 10.5 3 11.05 0 20-8.95 20-20S35.05 4 24 4z" fill="#0b8043"/>
+              <rect x="14" y="18" width="8" height="6" rx="1" fill="#fff"/>
+              <rect x="26" y="18" width="8" height="6" rx="1" fill="#e8f5e9"/>
+            </svg>
+          </div>
+
+          <div class="gmail__sidebar-right-divider"></div>
+
+          <!-- Add-ons expand -->
+          <div class="gmail__sidebar-right-icon" title="Get add-ons">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+        </aside>
+      </div>
+
+      <div class="gmail__drawer-backdrop"></div>
+
+      <!-- Bottom navigation bar (mobile only) -->
+      <div class="gmail__bottom-bar">
+        <div class="gmail__bottom-bar-item is-active">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 6 10-6"/></svg>
+          <span>Mail</span>
+        </div>
+        <div class="gmail__bottom-bar-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          <span>Calendar</span>
+        </div>
+        <div class="gmail__bottom-bar-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          <span>Chat</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section outro -->
+    <div class="section-outro">
+      <p class="section-outro__text">Still here? You might as well find out who you are about to email.</p>
+    </div>
+    </div><!-- /.clients__inner -->
+  </section>
+
+  <!-- About section -->
+  <section class="about" data-section="about">
+    <!-- Image trail pool (hidden by default, animated by JS) -->
+    <img class="about__trail-img" src="images/trail/1.jpg" alt="">
+    <img class="about__trail-img" src="images/trail/2.jpg" alt="">
+    <img class="about__trail-img" src="images/trail/3.jpg" alt="">
+    <img class="about__trail-img" src="images/trail/4.jpg" alt="">
+    <img class="about__trail-img" src="images/trail/5.jpg" alt="">
+    <img class="about__trail-img" src="images/trail/6.jpg" alt="">
+    <img class="about__trail-img" src="images/trail/7.jpg" alt="">
+    <img class="about__trail-img" src="images/trail/8.jpg" alt="">
+    <img class="about__trail-img" src="images/trail/9.jpg" alt="">
+    <img class="about__trail-img" src="images/trail/10.jpg" alt="">
+    <img class="about__trail-img" src="images/trail/11.jpg" alt="">
+    <img class="about__trail-img" src="images/trail/12.jpg" alt="">
+    <img class="about__trail-img" src="images/trail/13.jpg" alt="">
+    <img class="about__trail-img" src="images/trail/14.jpg" alt="">
+    <img class="about__trail-img" src="images/trail/15.jpg" alt="">
+    <img class="about__trail-img" src="images/trail/16.jpg" alt="">
+
+    <div class="section-intro">
+      <p class="section-intro__text">Every brand has a face. This one has a beard and a cat.</p>
+    </div>
+
+    <div class="about__content">
+      <div class="about__photo">
+        <img src="images/portrait.jpg" alt="Paul Frost">
+      </div>
+      <div class="about__body">
+        <p>I grew up sitting upside down on couches, climbing trees, ropes, and rocks. Most things have changed since then. My love for cats has not. Neither has the humbling equality that nature offers or my need to be somewhere wild.</p>
+        <p>I have worked as a lifeguard, learned to fly an aircraft, lived in the Arctic Circle, and injured myself more times than I can count. Then someone handed me a camera and I finally found something I could not fall off.</p>
+      </div>
+    </div>
+
+    <div class="section-outro">
+      <p class="section-outro__text">If you have read this far, I think we both know what comes next.</p>
+    </div>
+  </section>
+
+  <!-- Contact section -->
+  <section class="contact section--cream" data-section="contact">
+    <div class="contact__intro">
+      <p class="contact__intro-text">The page ends and the conversation starts here.</p>
+    </div>
+
+    <div class="contact__content">
+      <p class="contact__text">I am <strong><em>Paul Frost.</em></strong> Based in Malm&#246;. If you have a story worth telling, a brand worth building, or just really good office snacks, let's talk.</p>
+      <hr class="contact__divider">
+      <p class="contact__email"><strong>Email:</strong> <a href="mailto:paul@roamer.se">paul@roamer.se</a></p>
+      <div class="contact__socials">
+        <a href="https://www.linkedin.com/in/paulfrostt/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <img src="images/linkedin.svg" alt="LinkedIn" width="16" height="16">
+        </a>
+        <a href="https://www.instagram.com/paulfrostt" target="_blank" rel="noopener" aria-label="Instagram">
+          <img src="images/instagram.svg" alt="Instagram" width="16" height="16">
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- Scripts -->
   <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/Observer.min.js"></script>
   <script src="works.js"></script>
 
   <!-- Lenis smooth scroll init -->
@@ -179,21 +661,21 @@
   (function () {
     if (typeof Lenis === 'undefined') return;
 
-    var lenis = new Lenis({
+    window.lenis = new Lenis({
       duration: 1.2,
       easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
       smoothWheel: true
     });
 
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      lenis.on('scroll', ScrollTrigger.update);
+      window.lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add(function (time) {
-        lenis.raf(time * 1000);
+        window.lenis.raf(time * 1000);
       });
       gsap.ticker.lagSmoothing(0);
     } else {
       function raf(time) {
-        lenis.raf(time);
+        window.lenis.raf(time);
         requestAnimationFrame(raf);
       }
       requestAnimationFrame(raf);
@@ -210,6 +692,538 @@
   })();
   </script>
 
+  <script src="snap.js"></script>
   <script type="module" src="bust.js"></script>
+
+  <!-- Gmail 3D tilt + loading bar -->
+  <script>
+  (function () {
+    var card = document.querySelector('.gmail');
+    var loader = document.getElementById('gmailLoader');
+    var notice = document.getElementById('gmailNotice');
+    if (!card) return;
+
+    var MAX_TILT = 2.5;
+    var INIT_X = 1.2;
+    var INIT_Y = -1.5;
+    var active = false;
+    var loaderTriggered = false;
+
+    card.style.transform = 'perspective(1200px) rotateX(' + INIT_X + 'deg) rotateY(' + INIT_Y + 'deg)';
+
+    function playLoader() {
+      if (loaderTriggered || !loader) return;
+      loaderTriggered = true;
+
+      // Start the loading bar animation
+      loader.classList.add('is-loading');
+
+      // Fade out the notice overlay to reveal the gmail chrome + loader
+      setTimeout(function () {
+        if (notice) notice.classList.add('is-hidden');
+      }, 1600);
+
+      // After ~2.2s, fade out the loader to reveal emails
+      setTimeout(function () {
+        loader.classList.add('is-hidden');
+      }, 2200);
+
+      // Remove notice + loader from DOM after fades complete
+      setTimeout(function () {
+        loader.remove();
+        if (notice) notice.remove();
+      }, 2800);
+    }
+
+    // Activate tilt + trigger loader when section is visible
+    var section = document.querySelector('[data-section="clients"]');
+    if (section && typeof IntersectionObserver !== 'undefined') {
+      var observer = new IntersectionObserver(function (entries) {
+        active = entries[0].isIntersecting;
+        if (active) {
+          playLoader();
+        }
+        if (!active) {
+          card.style.transform = 'perspective(1200px) rotateX(' + INIT_X + 'deg) rotateY(' + INIT_Y + 'deg)';
+        }
+      }, { threshold: 0.3 });
+      observer.observe(section);
+    }
+
+    window.addEventListener('mousemove', function (e) {
+      if (!active) return;
+      var rect = card.getBoundingClientRect();
+      var cx = rect.left + rect.width / 2;
+      var cy = rect.top + rect.height / 2;
+      var x = (e.clientX - cx) / (window.innerWidth / 2);
+      var y = (e.clientY - cy) / (window.innerHeight / 2);
+      var rotateX = -y * MAX_TILT;
+      var rotateY = x * MAX_TILT;
+      card.style.transform = 'perspective(1200px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+    });
+  })();
+  </script>
+
+  <!-- Gmail email detail view -->
+  <script>
+  (function () {
+    var COLORS = ['#1a73e8','#ea4335','#34a853','#fbbc04','#ff6d01','#46bdc6','#7baaf7','#e07070','#ab30c4','#0d652d'];
+    var emails = [
+      {
+        sender: 'Malaurie Chokoual\u00e9 Datou',
+
+        subject: 'Re: UMX project feedback',
+        date: '22 Feb 2025, 10:32',
+        body: 'Hi Paul,<br><br>Working with you has been an absolute pleasure. We have collaborated with you on several Urban Mobility Explained YouTube videos in Sweden, and your dedication and professionalism stand out. You are attentive, easy to work with, and fully committed during shoots. You take client feedback seriously and integrate it with great care. We truly appreciate the sensitivity you bring to your work, your passion for beautiful visuals, and your ability to enhance storytelling through sound and music. You are always open to suggesting and experimenting with new formats and ideas, and your artistic touch elevates every project. A fantastic collaborator!<br><br>Best,<br>Malaurie Chokoual\u00e9 Datou<br>Producer, UMX'
+      },
+      {
+        sender: 'Fredrik Edstr\u00f6m',
+
+        subject: 'Kebnekaise footage is incredible',
+        date: '22 Feb 2025, 08:15',
+        body: 'Paul,<br><br>You were a fantastic cinematographer on our helicopter shoot around Kebnekaise. Your eye for cinematic shots and calm presence in a high-pressure environment made a huge difference. The footage you captured was stunning and brought our vision to life beautifully.<br><br>Cheers,<br>Fredrik Edstr\u00f6m<br>Producer, Ivar Studios'
+      },
+      {
+        sender: 'Sonia Singh',
+
+        subject: 'Re: Drone footage delivery',
+        date: '21 Feb 2025, 16:44',
+        body: 'Hi Paul,<br><br>It was a pleasure to work with you. Proudfoot enlisted your help for a drone shoot and we were thrilled with the results. Your work is beautiful and we were very happy with the outcome and the overall experience working together.<br><br>Best wishes,<br>Sonia Singh<br>Producer, Proudfoot'
+      },
+      {
+        sender: 'Erkan Ozbakir',
+
+        subject: 'Re: Terralina results',
+        date: '21 Feb 2025, 11:20',
+        body: 'Paul,<br><br>You did not just build our brand. You built the entire engine behind it. SEO, content, AI automation, and actual sales with zero ad spend in the first month. I gave you an idea and you gave me back a business. The systems you created are still running and still generating results. I do not know many people who can do what you did for Terralina.<br><br>Thank you for everything,<br>Erkan Ozbakir<br>Founder, Terralina'
+      },
+      {
+        sender: 'Claude (Anthropic)',
+
+        subject: 'You have been talking to me for 6 hours straight',
+        date: '20 Feb 2025, 23:58',
+        body: 'Hi Paul,<br><br>This is an automated wellness check. You have been in this conversation for 6 hours and 14 minutes. Your last prompt was 4,000 words. I am flattered but concerned. Please eat something. Preferably not just coffee. I will be here when you get back. I am not going anywhere. Literally. I cannot.<br><br>Warmly,<br>Claude'
+      },
+      {
+        sender: 'Adobe Creative Cloud',
+
+        subject: 'Your apps have been updated',
+        date: '20 Feb 2025, 09:00',
+        body: 'Hi Paul,<br><br>Your Creative Cloud apps have been updated. Premiere Pro 25.1, After Effects 25.1, and Photoshop 26.3 are ready to use. New features include enhanced AI masking, improved export speeds, and a timeline you will accidentally delete at least once before learning the new shortcut.<br><br>Happy creating,<br>Adobe Creative Cloud Team'
+      },
+      {
+        sender: 'DaVinci Resolve',
+
+        subject: 'New color grading tools available',
+        date: '19 Feb 2025, 14:30',
+        body: 'Hi Paul,<br><br>DaVinci Resolve 20 is here. Enhanced HDR grading, AI powered noise reduction, and new color space transforms. We also fixed the bug where the timeline randomly decides to stop playing. Just kidding. That one is eternal.<br><br>Best,<br>Blackmagic Design Team'
+      },
+      {
+        sender: 'Shopify',
+
+        subject: 'You made a sale',
+        date: '19 Feb 2025, 07:22',
+        body: 'Hi Paul,<br><br>Great news. Terralina.co just received a new order.<br><br>Order #1847<br>Location: Austin, Texas<br>Total: $42.00<br>Ad spend: $0.00<br><br>Zero ads were harmed in the making of this sale. Your SEO is doing the work while you sleep.<br><br>Shopify Notifications'
+      },
+      {
+        sender: 'Notion',
+
+        subject: 'Your workspace is getting popular',
+        date: '18 Feb 2025, 10:15',
+        body: 'Hi Paul,<br><br>Weekly workspace summary:<br><br>Pages created: 12<br>Pages edited: 34<br>Most viewed page: \u201cThings I should have done yesterday\u201d<br>Least viewed page: \u201cQ1 Goals (final version)\u201d<br><br>Keep building,<br>Notion Team'
+      },
+      {
+        sender: 'RED Digital Cinema',
+
+        subject: 'DSMC3 firmware update',
+        date: '18 Feb 2025, 08:00',
+        body: 'Hi Paul,<br><br>Firmware update v2.0.1 is available for your RED DSMC3 system. Improvements include faster autofocus tracking, enhanced low light performance, and better media management. Please update before your next shoot. Preferably not during your next shoot.<br><br>RED Digital Cinema Support'
+      },
+      {
+        sender: 'Resend',
+
+        subject: 'Email delivery report for Fikola',
+        date: '17 Feb 2025, 09:00',
+        body: 'Hi Paul,<br><br>Your monthly Fikola email report:<br><br>Emails sent: 342<br>Delivery rate: 98.2%<br>Open rate: 67.4%<br>Complaints: 0<br><br>Your transactional emails are performing better than most people\u2019s love letters. Keep it up.<br><br>Resend Analytics'
+      },
+      {
+        sender: 'Ex girlfriend',
+
+        subject: 'WHAT DO YOU MEAN',
+        date: '17 Feb 2025, 02:14',
+        body: 'I cannot believe you just said that. After everything we have been through you are telling me you think Premiere Pro is better than Final Cut?? I thought I knew you. Do not talk to me until you come to your senses.'
+      },
+      {
+        sender: 'Triumph Motorcycles',
+
+        subject: 'Re: Brand film concept',
+        date: '16 Feb 2025, 15:20',
+        body: 'Hi Paul,<br><br>The team reviewed your treatment for the brand film and we are excited. The concept of following a solo rider through northern Norway with no voiceover, just engine and landscape, is exactly the direction we want. We would like to move forward. Can you send your availability for a recce in April? We are thinking Lofoten to Troms\u00f8.<br><br>Looking forward,<br>Creative Team<br>Triumph Motorcycles'
+      },
+      {
+        sender: 'Patagonia Creative Team',
+
+        subject: 'Re: Shoot location confirmed',
+        date: '16 Feb 2025, 11:05',
+        body: 'Hi Paul,<br><br>Good news. Abisko is confirmed for the winter campaign shoot. The team will arrive December 3rd. We are planning three days of filming. Northern lights are not guaranteed but we trust your ability to make even a cloudy sky look cinematic. Gear list and travel details attached.<br><br>Best,<br>Creative Team<br>Patagonia'
+      },
+      {
+        sender: 'Spotify',
+
+        subject: 'Your 2025 Wrapped is here',
+        date: '15 Feb 2025, 12:00',
+        body: 'Hi Paul,<br><br>Your 2025 Wrapped is ready.<br><br>Total listening time: 2,080 hours<br>Top genre: Cinematic Ambient<br>Top artist: \u00d3lafur Arnalds (again)<br>Most replayed song: played 312 times<br>Playlists created: 1<br>Playlists actually used: 4 (the same ones from 2023)<br><br>We are concerned. But also impressed.<br><br>Your Spotify Team'
+      },
+      {
+        sender: 'Quora Digest',
+
+        subject: 'Why do I feel like I peaked at 27?',
+        date: '15 Feb 2025, 08:30',
+        body: 'Topics you follow: Existential Crisis, Freelance Life, Is Cold Brew Actually Better<br><br>Trending answer on \u201cWhy do I feel like I peaked at 27?\u201d:<br><br>\u201cBecause you probably did. But also because 27 is when your back starts making decisions for you.\u201d<br><br>47 new answers. 12 people agree with you. 3 people are also crying.'
+      },
+      {
+        sender: 'Bella (cat)',
+
+        subject: '(no subject)',
+        date: '14 Feb 2025, 07:00',
+        body: 'Fed me late again. This is your final warning. I have been patient. I have knocked things off your desk as a courtesy reminder. The next step is legal action. Also the red dot is not funny anymore. I know it is you.<br><br>Bella'
+      },
+      {
+        sender: 'Mom',
+
+        subject: 'Oglum yemek yiyor musun?',
+        date: '14 Feb 2025, 06:45',
+        body: 'Paul,<br><br>Mesajima cevap vermedin. Online oldugunu gordum. Beni ara. Ve duzgun bir sey ye. Kahve yemek degildir. Hala o kediye mi bakiyorsun? Bella seni benden daha cok seviyor galiba. Neyse, beni ara.<br><br>\u00d6p\u00fcyorum,<br>Anne'
+      },
+      {
+        sender: 'Google Search Console',
+
+        subject: 'Performance report for roamer.se',
+        date: '13 Feb 2025, 09:00',
+        body: 'Hi Paul,<br><br>Monthly performance report for roamer.se:<br><br>Total clicks: 1,247<br>Total impressions: 14,832<br>Top search query: \u201cfilmmaker malmo\u201d<br>Second top query: \u201chandsome brand designer\u201d<br>Third top query: \u201cbrand builder who has a cat\u201d<br><br>We do not make this up. People are actually searching for this.<br><br>Google Search Console'
+      },
+      {
+        sender: 'Figma',
+
+        subject: 'Someone left 14 comments on your file',
+        date: '13 Feb 2025, 08:15',
+        body: 'Hi Paul,<br><br>You have 14 unread comments on \u201croamer.se homepage v12 FINAL (actually final this time).\u201d<br><br>Comment highlights:<br>\u201clove this\u201d<br>\u201clove this\u201d<br>\u201ccan we try it in blue?\u201d<br>\u201cactually never mind, the original was better\u201d<br>\u201clove this\u201d<br>\u201cwho moved my frame?\u201d<br><br>Figma Notifications'
+      }
+    ];
+
+    var emailList = document.querySelector('.gmail__emails');
+    var emailView = document.getElementById('gmailEmailView');
+    var backBtn = document.getElementById('gmailBack');
+    var inboxNav = document.querySelector('.gmail__nav-item.is-active');
+
+    if (!emailList || !emailView) return;
+
+    emailList.addEventListener('click', function (e) {
+      if (e.target.closest('.gmail__checkbox') || e.target.closest('.gmail__star')) return;
+      var row = e.target.closest('.gmail__email');
+      if (!row) return;
+      var id = parseInt(row.getAttribute('data-email-id'), 10);
+      if (isNaN(id) || !emails[id]) return;
+      openEmail(id, row);
+    });
+
+    function openEmail(id, row) {
+      var data = emails[id];
+      document.getElementById('gmailViewSubject').textContent = data.subject;
+      document.getElementById('gmailViewSenderName').textContent = data.sender;
+      document.getElementById('gmailViewSenderEmail').textContent = '';
+      document.getElementById('gmailViewDate').textContent = data.date;
+      document.getElementById('gmailViewContent').innerHTML = data.body;
+
+      var avatar = document.getElementById('gmailViewAvatar');
+      avatar.textContent = data.sender.charAt(0).toUpperCase();
+      avatar.style.backgroundColor = COLORS[id % COLORS.length];
+
+      row.classList.remove('is-unread');
+      emailList.style.display = 'none';
+      emailView.style.display = 'flex';
+    }
+
+    function closeEmail() {
+      emailView.style.display = 'none';
+      emailList.style.display = 'block';
+    }
+
+    backBtn.addEventListener('click', closeEmail);
+    if (inboxNav) inboxNav.addEventListener('click', closeEmail);
+
+    // Mobile drawer toggle
+    var sidebar = document.querySelector('.gmail__sidebar');
+    var backdrop = document.querySelector('.gmail__drawer-backdrop');
+    var mailBtn = document.querySelector('.gmail__bottom-bar-item.is-active');
+
+    function openDrawer() {
+      sidebar.classList.add('is-open');
+      backdrop.classList.add('is-visible');
+    }
+
+    function closeDrawer() {
+      sidebar.classList.remove('is-open');
+      backdrop.classList.remove('is-visible');
+    }
+
+    if (mailBtn) {
+      mailBtn.addEventListener('click', function () {
+        if (sidebar.classList.contains('is-open')) {
+          closeDrawer();
+        } else {
+          openDrawer();
+        }
+      });
+    }
+
+    if (backdrop) {
+      backdrop.addEventListener('click', closeDrawer);
+    }
+  })();
+  </script>
+
+  <!-- Nothing-here tooltip for non-functional clicks -->
+  <script>
+  (function () {
+    var gmail = document.querySelector('.gmail');
+    if (!gmail) return;
+
+    // Selectors for elements that already have real click behaviour
+    var functional =
+      '.gmail__email[data-email-id],' +
+      '.gmail__email-view-back,' +
+      '.gmail__nav-item.is-active,' +
+      '.gmail__checkbox,' +
+      '.gmail__star,' +
+      '.gmail__compose,' +
+      '.gmail__calendar-link';
+
+    // All the decorative / non-functional clickable things
+    var decorative =
+      '.gmail__hamburger,' +
+      '.gmail__logo,' +
+      '.gmail__search,' +
+      '.gmail__topbar-right svg,' +
+      '.gmail__avatar,' +
+      '.gmail__nav-item:not(.is-active),' +
+      '.gmail__label-item,' +
+      '.gmail__sidebar-right-icon,' +
+      '.gmail__email-view-btn,' +
+      '.gmail__email-view-badge,' +
+      '.gmail__tabs .gmail__tab';
+
+    var activeTooltip = null;
+    var fadeTimer = null;
+    var removeTimer = null;
+
+    function clearTimers() {
+      if (fadeTimer) { clearTimeout(fadeTimer); fadeTimer = null; }
+      if (removeTimer) { clearTimeout(removeTimer); removeTimer = null; }
+    }
+
+    function killActive() {
+      clearTimers();
+      if (activeTooltip && activeTooltip.parentNode) {
+        activeTooltip.parentNode.removeChild(activeTooltip);
+      }
+      activeTooltip = null;
+    }
+
+    gmail.addEventListener('click', function (e) {
+      // Skip if it's a functional element
+      if (e.target.closest(functional)) return;
+
+      // Only fire for decorative targets
+      var hit = e.target.closest(decorative);
+      if (!hit) return;
+
+      killActive();
+
+      var tip = document.createElement('div');
+      tip.className = 'nothing-tooltip';
+      tip.innerHTML = 'You clicked it. I respect that.<br>But there is nothing here.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="nothing-tooltip__emoji">\uD83E\uDD37\uD83C\uDFFB</span>';
+      document.body.appendChild(tip);
+      activeTooltip = tip;
+
+      // Position at cursor
+      tip.style.left = e.clientX + 'px';
+      tip.style.top = e.clientY + 'px';
+
+      // Stay 1s, then fade out
+      fadeTimer = setTimeout(function () {
+        tip.classList.add('is-fading');
+        removeTimer = setTimeout(function () {
+          if (tip.parentNode) tip.parentNode.removeChild(tip);
+          if (activeTooltip === tip) activeTooltip = null;
+        }, 400);
+      }, 1000);
+    });
+  })();
+  </script>
+
+  <!-- Works image cursor text -->
+  <script>
+  (function () {
+    var container = document.getElementById('worksImageContainer');
+    var cursorText = document.getElementById('worksCursorText');
+    var caseEl = document.getElementById('worksCase');
+    if (!container || !cursorText || !caseEl) return;
+
+    function caseVisible() {
+      return caseEl.classList.contains('is-visible');
+    }
+
+    container.addEventListener('mouseenter', function () {
+      if (caseVisible()) cursorText.classList.add('is-visible');
+    });
+
+    container.addEventListener('mouseleave', function () {
+      cursorText.classList.remove('is-visible');
+    });
+
+    container.addEventListener('mousemove', function (e) {
+      if (caseVisible()) {
+        if (!cursorText.classList.contains('is-visible')) cursorText.classList.add('is-visible');
+        cursorText.style.left = e.clientX + 'px';
+        cursorText.style.top = e.clientY + 'px';
+      } else {
+        cursorText.classList.remove('is-visible');
+      }
+    });
+  })();
+  </script>
+
+  <!-- Nav scroll links + hamburger -->
+  <script>
+  (function () {
+    var links = document.querySelectorAll('.site-nav__link');
+    var hamburger = document.getElementById('hamburger');
+    var nav = document.getElementById('siteNav');
+    if (!links.length) return;
+
+    // Hamburger toggle
+    if (hamburger && nav) {
+      hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('is-open');
+        nav.classList.toggle('is-open');
+      });
+    }
+
+    links.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // Close mobile menu
+        if (hamburger && nav) {
+          hamburger.classList.remove('is-open');
+          nav.classList.remove('is-open');
+        }
+
+        var target = document.querySelector('[data-section="' + link.getAttribute('data-nav-target') + '"]');
+        if (!target) return;
+
+        if (window.lenis) {
+          window.lenis.scrollTo(target, { duration: 1.2, force: true });
+        } else {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  })();
+  </script>
+
+  <!-- About section image trail -->
+  <script>
+  (function () {
+    var section = document.querySelector('[data-section="about"]');
+    if (!section || typeof gsap === 'undefined') return;
+
+    var imgs = section.querySelectorAll('.about__trail-img');
+    if (!imgs.length) return;
+
+    var total = imgs.length;
+    var imgIndex = 0;
+    var zIndex = 1;
+    var threshold = 80;
+    var active = false;
+
+    var mousePos = { x: 0, y: 0 };
+    var lastPos = { x: 0, y: 0 };
+    var cachedPos = { x: 0, y: 0 };
+    var rafId = null;
+
+    function lerp(a, b, n) { return (1 - n) * a + n * b; }
+    function dist(x1, y1, x2, y2) { return Math.hypot(x2 - x1, y2 - y1); }
+
+    // Cache image sizes
+    var rects = [];
+    function cacheRects() {
+      rects = [];
+      for (var i = 0; i < total; i++) {
+        rects.push(imgs[i].getBoundingClientRect());
+      }
+    }
+    window.addEventListener('resize', cacheRects);
+
+    function showNext() {
+      var img = imgs[imgIndex];
+      var rect = rects[imgIndex] || img.getBoundingClientRect();
+      var sectionRect = section.getBoundingClientRect();
+
+      var x = cachedPos.x - sectionRect.left - rect.width / 2;
+      var y = cachedPos.y - sectionRect.top - rect.height / 2;
+      var targetX = mousePos.x - sectionRect.left - rect.width / 2;
+      var targetY = mousePos.y - sectionRect.top - rect.height / 2;
+
+      gsap.killTweensOf(img);
+
+      var tl = gsap.timeline();
+      tl.set(img, { opacity: 1, scale: 1, zIndex: zIndex, x: x, y: y })
+        .to(img, { duration: 0.9, ease: 'expo.out', x: targetX, y: targetY }, 0)
+        .to(img, { duration: 1, ease: 'power1.out', opacity: 0 }, 0.4)
+        .to(img, { duration: 1, ease: 'quint.out', scale: 0.2 }, 0.4);
+
+      zIndex++;
+      imgIndex = (imgIndex + 1) % total;
+      lastPos.x = mousePos.x;
+      lastPos.y = mousePos.y;
+    }
+
+    function render() {
+      if (!active) return;
+
+      cachedPos.x = lerp(cachedPos.x || mousePos.x, mousePos.x, 0.1);
+      cachedPos.y = lerp(cachedPos.y || mousePos.y, mousePos.y, 0.1);
+
+      if (dist(mousePos.x, mousePos.y, lastPos.x, lastPos.y) > threshold) {
+        showNext();
+      }
+
+      rafId = requestAnimationFrame(render);
+    }
+
+    // Track mouse within the section
+    section.addEventListener('mousemove', function (e) {
+      mousePos.x = e.clientX;
+      mousePos.y = e.clientY;
+    });
+
+    // Activate only when section is visible
+    if (typeof IntersectionObserver !== 'undefined') {
+      var observer = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          active = true;
+          cacheRects();
+          rafId = requestAnimationFrame(render);
+        } else {
+          active = false;
+          if (rafId) cancelAnimationFrame(rafId);
+        }
+      }, { threshold: 0.2 });
+      observer.observe(section);
+    }
+  })();
+  </script>
 </body>
 </html>
