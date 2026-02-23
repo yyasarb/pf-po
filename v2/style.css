@@ -205,8 +205,8 @@ p {
   text-align: center;
   position: relative;
   z-index: 4;
-  padding: 0 0 80px;
-  overflow: visible;
+  padding: 0;
+  overflow: clip;
   display: flex;
   flex-direction: column;
 }
@@ -216,7 +216,6 @@ p {
   left: var(--container-padding);
   top: 32px;
   z-index: 101;
-  mix-blend-mode: difference;
 }
 
 .hero__logo img {
@@ -239,7 +238,7 @@ p {
 
 .site-nav__link {
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   color: #fff;
   text-decoration: none;
@@ -388,7 +387,7 @@ p {
 /* --- Section Outro / Intro Pattern --- */
 .section-outro {
   margin-top: auto;
-  padding: 8vh var(--container-padding) 6vh;
+  padding: 0 0 4vh;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -401,6 +400,10 @@ p {
   line-height: 1.5;
   max-width: 1000px;
   margin: 0 auto;
+}
+
+.section-outro__text--mobile {
+  display: none;
 }
 
 .section-intro {
@@ -462,7 +465,7 @@ p {
   z-index: 3;
   min-height: 100vh;
   min-height: 100svh;
-  padding: 0 0 8vh;
+  padding: 0;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -476,7 +479,7 @@ p {
   font-style: italic;
   color: var(--color-dark);
   max-width: none;
-  padding-top: 0;
+  padding-top: 8vh;
   margin-bottom: 20px;
 }
 
@@ -536,21 +539,34 @@ p {
   50% { opacity: 0; }
 }
 
-.search__clear {
-  font-size: 20px;
-  color: var(--color-muted);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0 4px;
-  line-height: 1;
-  opacity: 0;
-  transition: opacity 0.2s;
+.search__enter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 28px;
+  border-radius: 6px;
+  background: #f1f3f4;
+  border: 1px solid #dadce0;
+  color: #5f6368;
   margin-left: auto;
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.1s, background 0.1s;
+  flex-shrink: 0;
 }
 
-.search.has-text .search__clear {
+.search.has-text .search__enter {
   opacity: 1;
+}
+
+.search__enter.is-pressed {
+  transform: scale(0.85);
+  background: #dadce0;
+}
+
+.search__enter.is-released {
+  transform: scale(1);
+  background: #f1f3f4;
 }
 
 /* --- Suggestions --- */
@@ -617,7 +633,7 @@ p {
   font-weight: 500;
   color: var(--color-dark);
   text-align: center;
-  margin: 5px auto 0;
+  margin: 1rem auto 2rem;
   max-width: 500px;
   opacity: 0;
   transition: opacity 0.6s var(--ease);
@@ -689,8 +705,8 @@ p {
 
 .works__tag-list li {
   font-family: var(--font-sans);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   color: var(--color-dark);
   line-height: 1.1;
   opacity: 0;
@@ -923,11 +939,27 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 7vh;
+  padding-top: 8vh;
 }
 
 .clients .section-outro {
-  padding: 0 var(--container-padding) 10vh;
+  padding: 0 0 4vh;
+}
+
+/* --- Notice above gmail (desktop only) --- */
+.clients__notice {
+  max-width: 1400px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
+.clients__notice p {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  max-width: 440px;
+  margin: 0 auto;
 }
 
 /* ============================================
@@ -975,7 +1007,7 @@ p {
 }
 
 .gmail__loader.is-loading .gmail__loader-bar {
-  animation: gmailLoaderFill 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: gmailLoaderFill 3.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .gmail__loader.is-hidden {
@@ -1597,12 +1629,12 @@ p {
   display: none;
 }
 
-/* --- Notice overlay --- */
+/* --- Notice overlay (hidden on desktop, shown on mobile) --- */
 .gmail__notice {
   position: absolute;
   inset: 0;
   z-index: 20;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -1660,7 +1692,7 @@ p {
 }
 
 .about .section-intro {
-  padding: 10vh var(--container-padding) 0;
+  padding: 8vh var(--container-padding) 0;
   position: relative;
   z-index: 2;
 }
@@ -1704,7 +1736,7 @@ p {
 }
 
 .about .section-outro {
-  padding: 0 var(--container-padding) 6vh;
+  padding: 0 0 4vh;
   position: relative;
   z-index: 2;
 }
@@ -1830,6 +1862,18 @@ p {
   }
 }
 
+@media (max-width: 2200px) {
+  .hero__bust {
+    right: -10%;
+  }
+}
+
+@media (max-width: 1550px) {
+  .hero__main {
+    padding-top: 15vh;
+  }
+}
+
 /* ============================================
    RESPONSIVE
    ============================================ */
@@ -1881,9 +1925,9 @@ p {
   }
 
   .hero {
-    padding: 0 0 20px;
-    height: 100vh;
-    height: 100svh;
+    padding: 0;
+    height: auto;
+    min-height: 0;
     display: flex;
     flex-direction: column;
   }
@@ -1897,44 +1941,49 @@ p {
 
   .hero__heading {
     font-size: clamp(2.6rem, 2rem + 4vw, 5.5rem);
-    max-width: none;
+    max-width: 700px;
     line-height: 1.05;
     padding: 0;
   }
 
   .hero__subtitle {
     font-size: 14px;
-    max-width: 350px;
+    max-width: 700px;
+    line-height: 1.3;
   }
 
   .hero__bust {
-    order: 2;
-    position: relative;
-    width: 90%;
-    height: 50vh;
-    margin: -15vh auto 0;
-    pointer-events: none;
-    opacity: 0.6;
+    display: none;
   }
 
   .section-outro {
     order: 99;
-    margin-top: auto;
-    padding: 4vh var(--container-padding) 4vh;
+    padding: 7vh 0 5vh;
   }
 
   .section-outro__text {
     font-size: 14px;
+    font-weight: 400;
     max-width: 300px;
+  }
+
+  .section-outro__text--desktop {
+    display: none;
+  }
+
+  .section-outro__text--mobile {
+    display: block;
   }
 
   /* Works section mobile */
   .works {
-    padding: 8vh 0 6vh;
+    padding: 0;
+    min-height: 0;
+    height: auto;
   }
 
   .works__browser-sub {
-    margin-bottom: 24px;
+    display: none;
   }
 
   .search {
@@ -1989,7 +2038,13 @@ p {
   .works__case {
     grid-template-columns: 1fr;
     gap: 32px;
-    margin-top: 15px;
+    margin-top: 30px;
+    transform: translateY(-30px);
+    transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  }
+
+  .works__case.is-visible {
+    transform: translateY(0);
   }
 
   .works__image {
@@ -2005,17 +2060,19 @@ p {
   }
 
   .works__tag-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    max-width: 340px;
   }
 
-  .works__tag-list li {
-    font-size: 14px;
+  .works__tag-list li::after {
+    content: ' /\00a0 ';
+    font-weight: 400;
   }
 
-  .works__tag-list li:nth-child(even) {
-    text-align: right;
+  .works__tag-list li:last-child::after {
+    content: '';
   }
 
   .works__tag-list li[data-hide-mobile] {
@@ -2024,6 +2081,7 @@ p {
 
   .works__title {
     font-size: 20px;
+    text-align: center;
   }
 
   .works__desc {
@@ -2040,10 +2098,9 @@ p {
 
   .works__pagination {
     gap: 10px;
-    margin-top: 16px;
-    margin-bottom: 24px;
+    margin-top: 6vh;
     position: static;
-    order: 3;
+    order: 7;
   }
 
   .works__found {
@@ -2063,6 +2120,25 @@ p {
     padding: 4px 6px;
   }
 
+  .clients {
+    height: auto;
+    min-height: 0;
+  }
+
+  .clients__inner {
+    padding-top: 4vh;
+  }
+
+  .about {
+    height: auto;
+    min-height: 0;
+  }
+
+  .contact {
+    height: auto;
+    min-height: 0;
+  }
+
   /* Gmail section mobile */
   .gmail {
     width: calc(100% - 24px);
@@ -2072,7 +2148,7 @@ p {
   }
 
   .gmail__notice {
-    border-radius: 12px;
+    display: none;
   }
 
   .gmail__topbar {
@@ -2449,13 +2525,18 @@ p {
     padding-top: 15vh;
   }
 
+  .hero__heading {
+    max-width: 970px;
+  }
+
   .hero__bust {
     order: 2;
     position: relative;
-    width: 80%;
-    height: 60vh;
-    margin: -5vh auto 0;
-    opacity: 0.5;
+    right: auto;
+    width: 100%;
+    height: 70vh;
+    margin: -20vh auto 0;
+    opacity: 1;
   }
 
   .section-outro {

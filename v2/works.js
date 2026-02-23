@@ -108,6 +108,7 @@
   var searchCursor  = document.getElementById('searchCursor');
   var suggestions   = document.getElementById('searchSuggestions');
   var suggestionEls = suggestions.querySelectorAll('.search__suggestion');
+  var enterKey      = document.getElementById('searchEnter');
   var foundEl       = document.getElementById('worksFound');
   var loaderEl      = document.getElementById('worksLoader');
   var caseEl        = document.getElementById('worksCase');
@@ -353,12 +354,27 @@
     foundEl.classList.remove('is-visible');
   }
 
+  function pressEnter() {
+    if (!enterKey) return Promise.resolve();
+    return new Promise(function (resolve) {
+      enterKey.classList.add('is-pressed');
+      setTimeout(function () {
+        enterKey.classList.remove('is-pressed');
+        enterKey.classList.add('is-released');
+        setTimeout(function () {
+          enterKey.classList.remove('is-released');
+          resolve();
+        }, 80);
+      }, 100);
+    });
+  }
+
   function showLoader() {
-    loaderEl.classList.add('is-visible');
+    if (loaderEl) loaderEl.classList.add('is-visible');
   }
 
   function hideLoader() {
-    loaderEl.classList.remove('is-visible');
+    if (loaderEl) loaderEl.classList.remove('is-visible');
   }
 
   /* ============================================
@@ -520,7 +536,7 @@
      PLAY ONE WORK (first appearance only)
      ============================================ */
 
-  function playWork(index) {
+  function playWork(index, isFirstLoad) {
     if (isAnimating) return;
     isAnimating = true;
 
@@ -541,30 +557,41 @@
         }
       });
 
-      // Step 1: Type search text
-      await typeText(work.searchText, searchText);
+      if (isFirstLoad) {
+        // Show case immediately while typing plays in parallel
+        await prepareCase(work);
+        revealCase();
 
-      // Step 2: Show loader
-      showLoader();
-      await delay(800);
+        // Type search text in parallel (non-blocking visual)
+        await typeText(work.searchText, searchText);
+        await pressEnter();
+        showFound();
+        await delay(600);
 
-      // Step 3: Hide loader, show found text
-      hideLoader();
-      showFound();
-      await delay(900);
+        isAnimating = false;
 
-      // Step 4: Show work case
-      await prepareCase(work);
-      revealCase();
-  
+        // Shorter auto-cycle since case appeared earlier
+        cycleTimer = setTimeout(function () {
+          var nextIndex = (currentWork + 1) % WORKS.length;
+          transitionToWork(nextIndex);
+        }, 4000);
+      } else {
+        // Normal flow: type → enter → found → case
+        await typeText(work.searchText, searchText);
+        await pressEnter();
+        showFound();
+        await delay(600);
 
-      isAnimating = false;
+        await prepareCase(work);
+        revealCase();
 
-      // Step 5: Auto-cycle after 6 seconds
-      cycleTimer = setTimeout(function () {
-        var nextIndex = (currentWork + 1) % WORKS.length;
-        transitionToWork(nextIndex);
-      }, 6000);
+        isAnimating = false;
+
+        cycleTimer = setTimeout(function () {
+          var nextIndex = (currentWork + 1) % WORKS.length;
+          transitionToWork(nextIndex);
+        }, 6000);
+      }
     }, 300);
   }
 
@@ -608,21 +635,17 @@
     await typeText(work.searchText, searchText);
     if (myId !== transitionId) return;
 
-    // 6. Fade out old case
-    hideCase();
-
-    // 7. Show loader
-    showLoader();
-    await delay(800);
+    // 5b. Press enter key
+    await pressEnter();
     if (myId !== transitionId) return;
 
-    // 8. Hide loader, show found text
-    hideLoader();
+    // 6. Simultaneously show found text and hide old case
     showFound();
-    await delay(900);
+    hideCase();
+    await delay(600);
     if (myId !== transitionId) return;
 
-    // 9. Show new case
+    // 7. Show new case
     await prepareCase(work);
     revealCase();
 
@@ -690,7 +713,7 @@
       onEnter: function () {
         if (!hasStarted) {
           hasStarted = true;
-          playWork(0);
+          playWork(0, true);
         }
       }
     });
@@ -700,7 +723,7 @@
       entries.forEach(function (entry) {
         if (entry.isIntersecting && !hasStarted) {
           hasStarted = true;
-          playWork(0);
+          playWork(0, true);
           observer.disconnect();
         }
       });

@@ -6,6 +6,7 @@
   'use strict';
 
   if (typeof gsap === 'undefined' || typeof Observer === 'undefined' || !window.lenis) return;
+  if (window.innerWidth <= 768) return;
 
   gsap.registerPlugin(Observer);
 
