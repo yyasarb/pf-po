@@ -1886,7 +1886,6 @@ p {
     height: 100svh;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
   }
 
   .hero__main {
@@ -1931,11 +1930,7 @@ p {
 
   /* Works section mobile */
   .works {
-    height: 100vh;
-    height: 100svh;
-    min-height: 0;
-    padding: 8vh 0 0;
-    overflow: hidden;
+    padding: 8vh 0 6vh;
   }
 
   .works__browser-sub {
@@ -1995,9 +1990,6 @@ p {
     grid-template-columns: 1fr;
     gap: 32px;
     margin-top: 15px;
-    flex: 1;
-    min-height: 0;
-    overflow-y: auto;
   }
 
   .works__image {
