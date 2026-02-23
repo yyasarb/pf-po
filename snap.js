@@ -26,8 +26,8 @@
   var currentIndex = 0;
   var isSnapping = false;
   var snapTimer = null;
-  var SNAP_COOLDOWN = 100;
-  var SNAP_DURATION = 1.4;
+  var SNAP_COOLDOWN = 50;
+  var SNAP_DURATION = 1.1;
   var SAFETY_TIMEOUT = (SNAP_DURATION * 1000) + 400;
 
   /* ---------- Helpers ---------- */
@@ -48,7 +48,8 @@
     isSnapping = true;
     currentIndex = index;
 
-    // Stop Lenis so it doesn't fight the snap
+    // Sync Lenis position before stopping to prevent micro-jump
+    lenis.scrollTo(window.scrollY, { immediate: true });
     lenis.stop();
 
     // Safety: always unlock if animation doesn't complete
@@ -63,7 +64,7 @@
     gsap.to(obj, {
       y: endY,
       duration: SNAP_DURATION,
-      ease: 'power3.inOut',
+      ease: 'power2.out',
       onUpdate: function () {
         window.scrollTo(0, obj.y);
       },
@@ -90,7 +91,7 @@
   /* ---------- Observer ---------- */
   Observer.create({
     type: 'wheel,touch',
-    tolerance: 80,
+    tolerance: 50,
     preventDefault: true,
     onUp: function () {
       if (isSnapping) return;
