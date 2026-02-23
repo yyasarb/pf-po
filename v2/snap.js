@@ -6,7 +6,7 @@
   'use strict';
 
   if (typeof gsap === 'undefined' || typeof Observer === 'undefined' || !window.lenis) return;
-  if (window.innerWidth <= 768) return;
+  if (window.innerWidth <= 767) return;
 
   gsap.registerPlugin(Observer);
 
@@ -24,8 +24,8 @@
   /* ---------- State ---------- */
   var currentIndex = 0;
   var isSnapping = false;
-  var SNAP_COOLDOWN = 300;
-  var SNAP_DURATION = 1.2;
+  var SNAP_COOLDOWN = 400;
+  var SNAP_DURATION = 1.8;
 
   /* ---------- Helpers ---------- */
   function sectionTop(el) {
@@ -85,7 +85,7 @@
   /* ---------- Observer ---------- */
   Observer.create({
     type: 'wheel,touch',
-    tolerance: 50,
+    tolerance: 120,
     preventDefault: false,
     onUp: function () {
       if (isSnapping) return;
