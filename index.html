@@ -787,145 +787,125 @@
   (function () {
     var COLORS = ['#1a73e8','#ea4335','#34a853','#fbbc04','#ff6d01','#46bdc6','#7baaf7','#e07070','#ab30c4','#0d652d'];
     var emails = [
-      {
+      { // 0: Malaurie
         sender: 'Malaurie Chokoual\u00e9 Datou',
-
         subject: 'Re: UMX project feedback',
         date: '22 Feb 2025, 10:32',
         body: 'Hi Paul,<br><br>Working with you has been an absolute pleasure. We have collaborated with you on several Urban Mobility Explained YouTube videos in Sweden, and your dedication and professionalism stand out. You are attentive, easy to work with, and fully committed during shoots. You take client feedback seriously and integrate it with great care. We truly appreciate the sensitivity you bring to your work, your passion for beautiful visuals, and your ability to enhance storytelling through sound and music. You are always open to suggesting and experimenting with new formats and ideas, and your artistic touch elevates every project. A fantastic collaborator!<br><br>Best,<br>Malaurie Chokoual\u00e9 Datou<br>Producer, UMX'
       },
-      {
+      { // 1: Fredrik
         sender: 'Fredrik Edstr\u00f6m',
-
         subject: 'Kebnekaise footage is incredible',
         date: '22 Feb 2025, 08:15',
         body: 'Paul,<br><br>You were a fantastic cinematographer on our helicopter shoot around Kebnekaise. Your eye for cinematic shots and calm presence in a high-pressure environment made a huge difference. The footage you captured was stunning and brought our vision to life beautifully.<br><br>Cheers,<br>Fredrik Edstr\u00f6m<br>Producer, Ivar Studios'
       },
-      {
+      { // 2: Sonia
         sender: 'Sonia Singh',
-
         subject: 'Re: Drone footage delivery',
         date: '21 Feb 2025, 16:44',
         body: 'Hi Paul,<br><br>It was a pleasure to work with you. Proudfoot enlisted your help for a drone shoot and we were thrilled with the results. Your work is beautiful and we were very happy with the outcome and the overall experience working together.<br><br>Best wishes,<br>Sonia Singh<br>Producer, Proudfoot'
       },
-      {
+      { // 3: Erkan
         sender: 'Erkan Ozbakir',
-
         subject: 'Re: Terralina results',
         date: '21 Feb 2025, 11:20',
         body: 'Paul,<br><br>You did not just build our brand. You built the entire engine behind it. SEO, content, AI automation, and actual sales with zero ad spend in the first month. I gave you an idea and you gave me back a business. The systems you created are still running and still generating results. I do not know many people who can do what you did for Terralina.<br><br>Thank you for everything,<br>Erkan Ozbakir<br>Founder, Terralina'
       },
-      {
+      { // 4: Claude
         sender: 'Claude (Anthropic)',
-
         subject: 'You have been talking to me for 6 hours straight',
         date: '20 Feb 2025, 23:58',
         body: 'Hi Paul,<br><br>This is an automated wellness check. You have been in this conversation for 6 hours and 14 minutes. Your last prompt was 4,000 words. I am flattered but concerned. Please eat something. Preferably not just coffee. I will be here when you get back. I am not going anywhere. Literally. I cannot.<br><br>Warmly,<br>Claude'
       },
-      {
-        sender: 'Adobe Creative Cloud',
-
-        subject: 'Your apps have been updated',
-        date: '20 Feb 2025, 09:00',
-        body: 'Hi Paul,<br><br>Your Creative Cloud apps have been updated. Premiere Pro 25.1, After Effects 25.1, and Photoshop 26.3 are ready to use. New features include enhanced AI masking, improved export speeds, and a timeline you will accidentally delete at least once before learning the new shortcut.<br><br>Happy creating,<br>Adobe Creative Cloud Team'
-      },
-      {
-        sender: 'DaVinci Resolve',
-
-        subject: 'New color grading tools available',
-        date: '19 Feb 2025, 14:30',
-        body: 'Hi Paul,<br><br>DaVinci Resolve 20 is here. Enhanced HDR grading, AI powered noise reduction, and new color space transforms. We also fixed the bug where the timeline randomly decides to stop playing. Just kidding. That one is eternal.<br><br>Best,<br>Blackmagic Design Team'
-      },
-      {
-        sender: 'Shopify',
-
-        subject: 'You made a sale',
-        date: '19 Feb 2025, 07:22',
-        body: 'Hi Paul,<br><br>Great news. Terralina.co just received a new order.<br><br>Order #1847<br>Location: Austin, Texas<br>Total: $42.00<br>Ad spend: $0.00<br><br>Zero ads were harmed in the making of this sale. Your SEO is doing the work while you sleep.<br><br>Shopify Notifications'
-      },
-      {
-        sender: 'Notion',
-
-        subject: 'Your workspace is getting popular',
-        date: '18 Feb 2025, 10:15',
-        body: 'Hi Paul,<br><br>Weekly workspace summary:<br><br>Pages created: 12<br>Pages edited: 34<br>Most viewed page: \u201cThings I should have done yesterday\u201d<br>Least viewed page: \u201cQ1 Goals (final version)\u201d<br><br>Keep building,<br>Notion Team'
-      },
-      {
-        sender: 'RED Digital Cinema',
-
-        subject: 'DSMC3 firmware update',
-        date: '18 Feb 2025, 08:00',
-        body: 'Hi Paul,<br><br>Firmware update v2.0.1 is available for your RED DSMC3 system. Improvements include faster autofocus tracking, enhanced low light performance, and better media management. Please update before your next shoot. Preferably not during your next shoot.<br><br>RED Digital Cinema Support'
-      },
-      {
-        sender: 'Resend',
-
-        subject: 'Email delivery report for Fikola',
-        date: '17 Feb 2025, 09:00',
-        body: 'Hi Paul,<br><br>Your monthly Fikola email report:<br><br>Emails sent: 342<br>Delivery rate: 98.2%<br>Open rate: 67.4%<br>Complaints: 0<br><br>Your transactional emails are performing better than most people\u2019s love letters. Keep it up.<br><br>Resend Analytics'
-      },
-      {
-        sender: 'Ex girlfriend',
-
-        subject: 'WHAT DO YOU MEAN',
-        date: '17 Feb 2025, 02:14',
-        body: 'I cannot believe you just said that. After everything we have been through you are telling me you think Premiere Pro is better than Final Cut?? I thought I knew you. Do not talk to me until you come to your senses.'
-      },
-      {
-        sender: 'Triumph Motorcycles',
-
-        subject: 'Re: Brand film concept',
-        date: '16 Feb 2025, 15:20',
-        body: 'Hi Paul,<br><br>The team reviewed your treatment for the brand film and we are excited. The concept of following a solo rider through northern Norway with no voiceover, just engine and landscape, is exactly the direction we want. We would like to move forward. Can you send your availability for a recce in April? We are thinking Lofoten to Troms\u00f8.<br><br>Looking forward,<br>Creative Team<br>Triumph Motorcycles'
-      },
-      {
-        sender: 'Patagonia Creative Team',
-
-        subject: 'Re: Shoot location confirmed',
-        date: '16 Feb 2025, 11:05',
-        body: 'Hi Paul,<br><br>Good news. Abisko is confirmed for the winter campaign shoot. The team will arrive December 3rd. We are planning three days of filming. Northern lights are not guaranteed but we trust your ability to make even a cloudy sky look cinematic. Gear list and travel details attached.<br><br>Best,<br>Creative Team<br>Patagonia'
-      },
-      {
-        sender: 'Spotify',
-
-        subject: 'Your 2025 Wrapped is here',
-        date: '15 Feb 2025, 12:00',
-        body: 'Hi Paul,<br><br>Your 2025 Wrapped is ready.<br><br>Total listening time: 2,080 hours<br>Top genre: Cinematic Ambient<br>Top artist: \u00d3lafur Arnalds (again)<br>Most replayed song: played 312 times<br>Playlists created: 1<br>Playlists actually used: 4 (the same ones from 2023)<br><br>We are concerned. But also impressed.<br><br>Your Spotify Team'
-      },
-      {
-        sender: 'Quora Digest',
-
-        subject: 'Why do I feel like I peaked at 27?',
-        date: '15 Feb 2025, 08:30',
-        body: 'Topics you follow: Existential Crisis, Freelance Life, Is Cold Brew Actually Better<br><br>Trending answer on \u201cWhy do I feel like I peaked at 27?\u201d:<br><br>\u201cBecause you probably did. But also because 27 is when your back starts making decisions for you.\u201d<br><br>47 new answers. 12 people agree with you. 3 people are also crying.'
-      },
-      {
+      { // 5: Bella (cat)
         sender: 'Bella (cat)',
-
         subject: '(no subject)',
-        date: '14 Feb 2025, 07:00',
+        date: '20 Feb 2025, 07:00',
         body: 'Fed me late again. This is your final warning. I have been patient. I have knocked things off your desk as a courtesy reminder. The next step is legal action. Also the red dot is not funny anymore. I know it is you.<br><br>Bella'
       },
-      {
-        sender: 'Mom',
-
-        subject: 'Are you eating enough?',
-        date: '14 Feb 2025, 06:45',
-        body: 'Paul,<br><br>You never replied to my message. I saw you were online. Call me. And eat something proper. Coffee is not food. Are you still looking after that cat? Bella probably loves you more than me at this point. Anyway, call me.<br><br>Love,<br>Mom'
-      },
-      {
+      { // 6: Google Search Console
         sender: 'Google Search Console',
-
         subject: 'Performance report for roamer.se',
-        date: '13 Feb 2025, 09:00',
+        date: '19 Feb 2025, 09:00',
         body: 'Hi Paul,<br><br>Monthly performance report for roamer.se:<br><br>Total clicks: 1,247<br>Total impressions: 14,832<br>Top search query: \u201cfilmmaker malmo\u201d<br>Second top query: \u201chandsome brand designer\u201d<br>Third top query: \u201cbrand builder who has a cat\u201d<br><br>We do not make this up. People are actually searching for this.<br><br>Google Search Console'
       },
-      {
+      { // 7: Quora Digest
+        sender: 'Quora Digest',
+        subject: 'Why do I feel like I peaked at 27?',
+        date: '19 Feb 2025, 08:30',
+        body: 'Topics you follow: Existential Crisis, Freelance Life, Is Cold Brew Actually Better<br><br>Trending answer on \u201cWhy do I feel like I peaked at 27?\u201d:<br><br>\u201cBecause you probably did. But also because 27 is when your back starts making decisions for you.\u201d<br><br>47 new answers. 12 people agree with you. 3 people are also crying.'
+      },
+      { // 8: Ex girlfriend
+        sender: 'Ex girlfriend',
+        subject: 'WHAT DO YOU MEAN',
+        date: '18 Feb 2025, 02:14',
+        body: 'I cannot believe you just said that. After everything we have been through you are telling me you think Premiere Pro is better than Final Cut?? I thought I knew you. Do not talk to me until you come to your senses.'
+      },
+      { // 9: Figma
         sender: 'Figma',
-
         subject: 'Someone left 14 comments on your file',
-        date: '13 Feb 2025, 08:15',
+        date: '18 Feb 2025, 08:15',
         body: 'Hi Paul,<br><br>You have 14 unread comments on \u201croamer.se homepage v12 FINAL (actually final this time).\u201d<br><br>Comment highlights:<br>\u201clove this\u201d<br>\u201clove this\u201d<br>\u201ccan we try it in blue?\u201d<br>\u201cactually never mind, the original was better\u201d<br>\u201clove this\u201d<br>\u201cwho moved my frame?\u201d<br><br>Figma Notifications'
+      },
+      { // 10: Mom
+        sender: 'Mom',
+        subject: 'Are you eating enough?',
+        date: '17 Feb 2025, 06:45',
+        body: 'Paul,<br><br>You never replied to my message. I saw you were online. Call me. And eat something proper. Coffee is not food. Are you still looking after that cat? Bella probably loves you more than me at this point. Anyway, call me.<br><br>Love,<br>Mom'
+      },
+      { // 11: Patagonia
+        sender: 'Patagonia Creative Team',
+        subject: 'Re: Shoot location confirmed',
+        date: '17 Feb 2025, 11:05',
+        body: 'Hi Paul,<br><br>Good news. Abisko is confirmed for the winter campaign shoot. The team will arrive December 3rd. We are planning three days of filming. Northern lights are not guaranteed but we trust your ability to make even a cloudy sky look cinematic. Gear list and travel details attached.<br><br>Best,<br>Creative Team<br>Patagonia'
+      },
+      { // 12: Shopify
+        sender: 'Shopify',
+        subject: 'You made a sale',
+        date: '16 Feb 2025, 07:22',
+        body: 'Hi Paul,<br><br>Great news. Terralina.co just received a new order.<br><br>Order #1847<br>Location: Austin, Texas<br>Total: $42.00<br>Ad spend: $0.00<br><br>Zero ads were harmed in the making of this sale. Your SEO is doing the work while you sleep.<br><br>Shopify Notifications'
+      },
+      { // 13: Adobe Creative Cloud
+        sender: 'Adobe Creative Cloud',
+        subject: 'Your apps have been updated',
+        date: '16 Feb 2025, 09:00',
+        body: 'Hi Paul,<br><br>Your Creative Cloud apps have been updated. Premiere Pro 25.1, After Effects 25.1, and Photoshop 26.3 are ready to use. New features include enhanced AI masking, improved export speeds, and a timeline you will accidentally delete at least once before learning the new shortcut.<br><br>Happy creating,<br>Adobe Creative Cloud Team'
+      },
+      { // 14: Triumph Motorcycles
+        sender: 'Triumph Motorcycles',
+        subject: 'Re: Brand film concept',
+        date: '15 Feb 2025, 15:20',
+        body: 'Hi Paul,<br><br>The team reviewed your treatment for the brand film and we are excited. The concept of following a solo rider through northern Norway with no voiceover, just engine and landscape, is exactly the direction we want. We would like to move forward. Can you send your availability for a recce in April? We are thinking Lofoten to Troms\u00f8.<br><br>Looking forward,<br>Creative Team<br>Triumph Motorcycles'
+      },
+      { // 15: DaVinci Resolve
+        sender: 'DaVinci Resolve',
+        subject: 'New color grading tools available',
+        date: '15 Feb 2025, 14:30',
+        body: 'Hi Paul,<br><br>DaVinci Resolve 20 is here. Enhanced HDR grading, AI powered noise reduction, and new color space transforms. We also fixed the bug where the timeline randomly decides to stop playing. Just kidding. That one is eternal.<br><br>Best,<br>Blackmagic Design Team'
+      },
+      { // 16: Notion
+        sender: 'Notion',
+        subject: 'Your workspace is getting popular',
+        date: '14 Feb 2025, 10:15',
+        body: 'Hi Paul,<br><br>Weekly workspace summary:<br><br>Pages created: 12<br>Pages edited: 34<br>Most viewed page: \u201cThings I should have done yesterday\u201d<br>Least viewed page: \u201cQ1 Goals (final version)\u201d<br><br>Keep building,<br>Notion Team'
+      },
+      { // 17: RED Digital Cinema
+        sender: 'RED Digital Cinema',
+        subject: 'DSMC3 firmware update',
+        date: '14 Feb 2025, 08:00',
+        body: 'Hi Paul,<br><br>Firmware update v2.0.1 is available for your RED DSMC3 system. Improvements include faster autofocus tracking, enhanced low light performance, and better media management. Please update before your next shoot. Preferably not during your next shoot.<br><br>RED Digital Cinema Support'
+      },
+      { // 18: Resend
+        sender: 'Resend',
+        subject: 'Email delivery report for Fikola',
+        date: '13 Feb 2025, 09:00',
+        body: 'Hi Paul,<br><br>Your monthly Fikola email report:<br><br>Emails sent: 342<br>Delivery rate: 98.2%<br>Open rate: 67.4%<br>Complaints: 0<br><br>Your transactional emails are performing better than most people\u2019s love letters. Keep it up.<br><br>Resend Analytics'
+      },
+      { // 19: Spotify
+        sender: 'Spotify',
+        subject: 'Your 2025 Wrapped is here',
+        date: '13 Feb 2025, 12:00',
+        body: 'Hi Paul,<br><br>Your 2025 Wrapped is ready.<br><br>Total listening time: 2,080 hours<br>Top genre: Cinematic Ambient<br>Top artist: \u00d3lafur Arnalds (again)<br>Most replayed song: played 312 times<br>Playlists created: 1<br>Playlists actually used: 4 (the same ones from 2023)<br><br>We are concerned. But also impressed.<br><br>Your Spotify Team'
       }
     ];
 
